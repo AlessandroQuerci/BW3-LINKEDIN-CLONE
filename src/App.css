@@ -31,3 +31,24 @@ html {
 #myFooter p:hover {
   color: black !important;
 }
+
+.px-custom {
+  padding-inline: 18.5rem !important;
+}
+
+#userField {
+  position: relative;
+}
+
+#btn-camera {
+  position: absolute;
+  right: 25px;
+  top: 15px;
+}
+
+/* Posizione del bottone "Aggiungi Foto" */
+#addPhoto {
+  position: absolute;
+  bottom: 620px;
+  left: 425px;
+}
