@@ -97,12 +97,38 @@ const Home = () => {
                   Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorem, quaerat quam! Vero doloribus nemo non tempora, debitis recusandae!
                   Distinctio aperiam pariatur ipsum ea rerum. Nulla, quae. Enim, consequuntur incidunt. Tempora.
                 </p>
-                <div>
-                  <img
-                    src="https://images.unsplash.com/photo-1584448141569-69f342da535c?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8cG9zdGVyfGVufDB8MXwwfHx8MA%3D%3D"
-                    alt=""
-                  />
+                <div className="my-1">
+                  <div className="text-center">
+                    <img
+                      src="https://images.unsplash.com/photo-1584448141569-69f342da535c?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8cG9zdGVyfGVufDB8MXwwfHx8MA%3D%3D"
+                      alt=""
+                    />
+                  </div>
                 </div>
+                <img
+                  src="https://static.licdn.com/aero-v1/sc/h/2uxqgankkcxm505qn812vqyss"
+                  alt="like"
+                  dattest-reactions-icon-type="LIKE"
+                  data-test-reactions-icon-theme="light"
+                  data-test-reactions-icon-style="consumption"
+                  data-test-reactions-icon-size="medium"
+                ></img>
+                <img
+                  src="https://static.licdn.com/aero-v1/sc/h/f58e354mjsjpdd67eq51cuh49"
+                  alt="love"
+                  data-test-reactions-icon-type="EMPATHY"
+                  data-test-reactions-icon-theme="light"
+                  data-test-reactions-icon-style="consumption"
+                  data-test-reactions-icon-size="medium"
+                ></img>
+                <img
+                  src="https://static.licdn.com/aero-v1/sc/h/cm8d2ytayynyhw5ieaare0tl3"
+                  alt="celebrate"
+                  data-test-reactions-icon-type="PRAISE"
+                  data-test-reactions-icon-theme="light"
+                  data-test-reactions-icon-style="consumption"
+                  data-test-reactions-icon-size="medium"
+                ></img>
               </div>
             </div>
           </Col>
