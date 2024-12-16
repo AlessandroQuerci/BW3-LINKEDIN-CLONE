@@ -1,0 +1,33 @@
+.fs-7 {
+  font-size: 0.75rem !important;
+}
+
+.fs-8 {
+  font-size: 0.5rem !important;
+}
+
+html {
+  background-color: #f4f2ee;
+}
+
+.bg-linkedin {
+  background-color: #f4f2ee;
+}
+
+.px-footer {
+  padding-inline: 8rem !important;
+}
+
+#link:hover {
+  color: black !important;
+}
+#link p:hover {
+  color: black !important;
+}
+
+#myFooter a:hover {
+  color: black !important;
+}
+#myFooter p:hover {
+  color: black !important;
+}
