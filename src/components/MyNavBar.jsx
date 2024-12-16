@@ -23,7 +23,7 @@ import { BsFillGrid3X3GapFill } from "react-icons/bs";
 const MyNavBar = () => {
   return (
     <>
-      <Container fluid className="d-flex justify-content-start justify-content-lg-center align-items-center">
+      <Container className="d-flex justify-content-start justify-content-lg-center align-items-center">
         <Navbar className="bg-white">
           <Container>
             <Link to={"/"}>

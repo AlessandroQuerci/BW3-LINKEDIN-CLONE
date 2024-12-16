@@ -31,3 +31,26 @@ html {
 #myFooter p:hover {
   color: black !important;
 }
+
+#close-btn {
+  top: 10px;
+  right: 10px;
+}
+
+#img-btn {
+  width: 48px;
+  height: 48px;
+}
+#img-btn img {
+  width: 48px;
+  height: 48px;
+}
+
+#user-info p:nth-child(3):after {
+  content: " • ";
+}
+
+#follow-btn {
+  top: 0px;
+  right: 10px;
+}
