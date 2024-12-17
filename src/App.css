@@ -37,9 +37,26 @@ body {
 }
 
 #NavBar {
-  z-index: 100000;
+  z-index: 10;
 }
 
+/*Modale*/
+.modal dialog {
+  height: 80%;
+  width: 100%;
+  max-width: none;
+}
+.modal-content {
+  z-index: 20;
+  height: 100%;
+  width: 100%;
+}
+
+@media (min-width: 576px) {
+  .modal-dialog {
+    max-width: fit-content;
+  }
+}
 /*card crea-post*/
 #user-box {
   border: 1px solid;
@@ -54,13 +71,13 @@ body {
   height: 48px;
   object-fit: cover;
 }
-#user-box > div > div + Button {
+#create-post {
   border: 1px solid;
   border-color: #d9e2ed;
   color: #212121;
 }
 
-#user-box > div > div + Button:hover {
+#create-post:hover {
   color: #8e8a8a;
   opacity: 50%;
 }
@@ -73,6 +90,29 @@ body {
   color: black;
 }
 
+div > hr + p {
+  color: #8e8a8a;
+}
+
+#dropdown-basic {
+  margin: 0;
+  padding: 0;
+  background: none;
+  border: none;
+  color: black;
+  font-size: 0.75rem;
+}
+
+.dropdown-menu.show p:nth-child(3) {
+  color: #6c757d;
+}
+
+.dropdown-item img {
+  transition: transform 0.3s ease;
+}
+.dropdown-item img:hover {
+  transform: translateY(-25px) scale(2);
+}
 /*main-card*/
 #close-btn {
   top: 10px;
@@ -112,4 +152,36 @@ body {
 }
 #img-actions > div + div > p:hover {
   color: blue;
+}
+
+.dropup .dropdown-toggle {
+  background-color: transparent;
+  border: none;
+  color: #6c757d;
+  font-weight: bold;
+}
+
+.dropup .dropdown-toggle::after {
+  display: none;
+  margin-left: none;
+  vertical-align: none;
+  content: "";
+  border-top: none;
+  border-right: none;
+  border-bottom: none;
+  border-left: none;
+}
+
+.dropup .dropdown-toggle:hover {
+  color: black;
+}
+
+.dropdown-menu.show {
+  display: block;
+  background-color: transparent;
+  border: none;
+}
+
+.dropdown-menu {
+  --bs-dropdown-link-hover-bg: none;
 }
