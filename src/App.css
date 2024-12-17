@@ -40,6 +40,29 @@ body {
   z-index: 10;
 }
 
+/*CARD SINISTRA*/
+#see-more a {
+  text-decoration: none;
+}
+#see-more a:nth-child(2) {
+  border-color: #6c757d;
+}
+
+#see-more a:hover {
+  text-decoration: underline;
+}
+
+#see-more > a + Button {
+  color: #4a4949;
+  background-color: white;
+}
+
+#see-more > a + Button:hover {
+  color: #212121;
+  background-color: #e6e7e8b8;
+}
+
+/*CARD CENTRALE*/
 /*Modale*/
 .modal dialog {
   height: 80%;
@@ -111,7 +134,7 @@ div > hr + p {
   transition: transform 0.3s ease;
 }
 .dropdown-item img:hover {
-  transform: translateY(-25px) scale(2);
+  transform: translateY(-25px) scale(1.4);
 }
 /*main-card*/
 #close-btn {

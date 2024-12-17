@@ -10,10 +10,19 @@ const Home = () => {
       <Container fluid className="mt-4 mb-5">
         <Row className="d-flex justify-content-center gap-3">
           {/*Sinistra*/}
-          <Col className="col-2 bg-secondary">
-            <div>
+          <Col className="col-2 ">
+            <div className="d-flex flex-column p-2  rounded bg-primary">
               Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sunt corrupti consectetur modi illum velit minus aut. Et, sint adipisci in repudiandae
               voluptas magni cum soluta corrupti! Consectetur, voluptatum alias? Esse?
+            </div>
+            <div id="see-more" className="d-flex flex-column mt-2 rounded bg-white">
+              <a className="fs-7 fw-bold px-2 py-1 mt-3" href="">
+                Gruppi
+              </a>
+              <a className="fs-7 fw-bold px-2 py-1 pb-2 mt-2 border-bottom border-1" href="">
+                Eventi
+              </a>
+              <Button className="m-0 py-2 border-0 fw-bold fs-6">Scopri di più</Button>
             </div>
           </Col>
           {/*Centro*/}
