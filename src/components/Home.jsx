@@ -1,52 +1,56 @@
 import { Button, Col, Container, Row } from "react-bootstrap";
 
+//ICONE
+import { LuGitCompareArrows } from "react-icons/lu";
+
 const Home = () => {
   return (
     <>
-      <Container fluid className="mt-3">
+      <Container fluid className="mt-4 mb-5">
         <Row className="d-flex justify-content-center gap-3">
+          {/*Sinistra*/}
           <Col className="col-2 bg-secondary">
             <div>
               Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sunt corrupti consectetur modi illum velit minus aut. Et, sint adipisci in repudiandae
               voluptas magni cum soluta corrupti! Consectetur, voluptatum alias? Esse?
             </div>
           </Col>
-
-          <Col className="d-flex flex-column col-4 ">
-            <div id="user-box" className="border border-1 border-secondary rounded p-2">
+          {/*Centro*/}
+          <Col className="d-flex flex-column col-7 col-lg-4 ">
+            <div id="user-box" className="bg-white rounded p-2">
               <div className="d-flex justify-content-around gap-2">
-                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="gray" className="bi bi-person-circle" viewBox="0 0 16 16">
-                  <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
-                  <path
-                    fillRule="evenodd"
-                    d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"
+                <div id="profile-img-btn">
+                  <img
+                    src="https://plus.unsplash.com/premium_photo-1688740375397-34605b6abe48?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fHByb2ZpbGUlMjBwaWN8ZW58MHx8MHx8fDA%3D"
+                    alt=""
+                    className=" rounded-circle"
                   />
-                </svg>
-                <Button className="border border-1 border-secondary rounded-pill bg-white text-secondary text-start w-100 ">Crea un post</Button>
+                </div>
+                <Button className=" rounded-pill bg-white text-start w-100 ">Crea un post</Button>
               </div>
               <div className="d-flex justify-content-around mt-3">
                 <Button size="sm d-flex justify-content-between align-items-center gap-2 border-0 bg-white text-secondary fw-bold">
                   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#5F9B41" className="bi bi-youtube" viewBox="0 0 16 16">
                     <path d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.01 2.01 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.01 2.01 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31 31 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.01 2.01 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A100 100 0 0 1 7.858 2zM6.4 5.209v4.818l4.157-2.408z" />
                   </svg>
-                  Video
+                  <p className="m-0">Video</p>
                 </Button>
                 <Button size="sm d-flex justify-content-between align-items-center gap-2 border-0 bg-white text-secondary fw-bold">
                   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#378FE9" className="bi bi-image" viewBox="0 0 16 16">
                     <path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0" />
                     <path d="M2.002 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2zm12 1a1 1 0 0 1 1 1v6.5l-3.777-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12V3a1 1 0 0 1 1-1z" />
                   </svg>
-                  Foto
+                  <p className="m-0">Foto</p>
                 </Button>
                 <Button size="sm d-flex justify-content-between align-items-center gap-2 border-0 bg-white text-secondary fw-bold">
                   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#E06847" className="bi bi-blockquote-left" viewBox="0 0 16 16">
                     <path d="M2.5 3a.5.5 0 0 0 0 1h11a.5.5 0 0 0 0-1zm5 3a.5.5 0 0 0 0 1h6a.5.5 0 0 0 0-1zm0 3a.5.5 0 0 0 0 1h6a.5.5 0 0 0 0-1zm-5 3a.5.5 0 0 0 0 1h11a.5.5 0 0 0 0-1zm.79-5.373q.168-.117.444-.275L3.524 6q-.183.111-.452.287-.27.176-.51.428a2.4 2.4 0 0 0-.398.562Q2 7.587 2 7.969q0 .54.217.873.217.328.72.328.322 0 .504-.211a.7.7 0 0 0 .188-.463q0-.345-.211-.521-.205-.182-.568-.182h-.282q.036-.305.123-.498a1.4 1.4 0 0 1 .252-.37 2 2 0 0 1 .346-.298zm2.167 0q.17-.117.445-.275L5.692 6q-.183.111-.452.287-.27.176-.51.428a2.4 2.4 0 0 0-.398.562q-.165.31-.164.692 0 .54.217.873.217.328.72.328.322 0 .504-.211a.7.7 0 0 0 .188-.463q0-.345-.211-.521-.205-.182-.568-.182h-.282a1.8 1.8 0 0 1 .118-.492q.087-.194.257-.375a2 2 0 0 1 .346-.3z" />
                   </svg>
-                  Scrivi un articolo
+                  <p className="m-0">Scrivi un articolo</p>
                 </Button>
               </div>
             </div>
-            <div id="user-box" className="mt-3 border border-1 border-secondary rounded p-2 position-relative">
+            <div id="user-box" className="mt-3 bg-white rounded p-2 position-relative">
               <div className="d-flex align-items-center gap-1 ">
                 <img
                   src="https://images.unsplash.com/photo-1467010234262-77bada75a47d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fHBlcnNvbmF8ZW58MHwxfDB8fHww"
@@ -68,95 +72,125 @@ const Home = () => {
                   </svg>
                 </div>
               </div>
-              <div>
-                <div className="d-flex align-items-center mt-3 position-relative">
-                  <div id="img-btn">
-                    <img
-                      src="https://plus.unsplash.com/premium_photo-1680281937048-735543c5c0f7?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8Y29tcGFueXxlbnwwfDF8MHx8fDA%3D"
-                      alt=""
-                      className="img-fluid rounded-circle"
-                    />
-                  </div>
-                  <div id="user-info" className="d-flex flex-column">
-                    <p className="m-0 fs-6 fw-bold d-block">Nome Azienda</p>
 
-                    <p className="m-0 fs-7 ">10.000 follower</p>
-
+              <div className="d-flex align-items-center mt-3 position-relative">
+                <div id="img-btn">
+                  <img
+                    src="https://plus.unsplash.com/premium_photo-1680281937048-735543c5c0f7?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8Y29tcGFueXxlbnwwfDF8MHx8fDA%3D"
+                    alt=""
+                    className="img-fluid rounded-circle"
+                  />
+                </div>
+                <div id="user-info" className="d-flex flex-column">
+                  <p className="m-0 fs-6 fw-bold d-block">Nome Azienda</p>
+                  <p className="m-0 fs-7 ">10.000 follower</p>
+                  <div className="d-flex align-items-center gap-1">
                     <p className="m-0 fs-7">N. giorni</p>
-                  </div>
-                  <Button id="follow-btn" className="border-0 bg-transparent text-primary position-absolute fw-bold p-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-plus-lg" viewBox="0 0 16 16">
-                      <path fillRule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2" />
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" className="bi bi-globe-americas " viewBox="0 0 16 16">
+                      <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0M2.04 4.326c.325 1.329 2.532 2.54 3.717 3.19.48.263.793.434.743.484q-.121.12-.242.234c-.416.396-.787.749-.758 1.266.035.634.618.824 1.214 1.017.577.188 1.168.38 1.286.983.082.417-.075.988-.22 1.52-.215.782-.406 1.48.22 1.48 1.5-.5 3.798-3.186 4-5 .138-1.243-2-2-3.5-2.5-.478-.16-.755.081-.99.284-.172.15-.322.279-.51.216-.445-.148-2.5-2-1.5-2.5.78-.39.952-.171 1.227.182.078.099.163.208.273.318.609.304.662-.132.723-.633.039-.322.081-.671.277-.867.434-.434 1.265-.791 2.028-1.12.712-.306 1.365-.587 1.579-.88A7 7 0 1 1 2.04 4.327Z" />
                     </svg>
-                    Segui
-                  </Button>
+                  </div>
                 </div>
-                <p>
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorem, quaerat quam! Vero doloribus nemo non tempora, debitis recusandae!
-                  Distinctio aperiam pariatur ipsum ea rerum. Nulla, quae. Enim, consequuntur incidunt. Tempora.
-                </p>
-                <div id="bg-img" className="my-1 ">
-                  <div className="text-center">
+                <Button id="follow-btn" className="border-0 bg-transparent text-primary position-absolute fw-bold p-0">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-plus-lg" viewBox="0 0 16 16">
+                    <path fillRule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2" />
+                  </svg>
+                  Segui
+                </Button>
+              </div>
+              <p>
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorem, quaerat quam! Vero doloribus nemo non tempora, debitis recusandae! Distinctio
+                aperiam pariatur ipsum ea rerum. Nulla, quae. Enim, consequuntur incidunt. Tempora.
+              </p>
+              <div id="bg-img" className="my-1 ">
+                <div className="text-center">
+                  <img
+                    src="https://images.unsplash.com/photo-1584448141569-69f342da535c?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8cG9zdGVyfGVufDB8MXwwfHx8MA%3D%3D"
+                    alt=""
+                    className="img-fluid shadow-lg"
+                  />
+                </div>
+              </div>
+              <div id="img-actions" className="mt-1 d-flex align-items-center justify-content-between">
+                <div className="d-flex align-items-center">
+                  <Button className="p-0 m-0 bg-transparent border-0">
                     <img
-                      src="https://images.unsplash.com/photo-1584448141569-69f342da535c?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8cG9zdGVyfGVufDB8MXwwfHx8MA%3D%3D"
-                      alt=""
-                      className="img-fluid shadow-lg"
-                    />
-                  </div>
+                      id="like-btn"
+                      src="https://static.licdn.com/aero-v1/sc/h/2uxqgankkcxm505qn812vqyss"
+                      alt="like"
+                      data-test-reactions-icon-theme="light"
+                      data-test-reactions-icon-style="consumption"
+                      data-test-reactions-icon-size="medium"
+                      height={20}
+                      width={20}
+                    ></img>
+                  </Button>
+                  <Button className="p-0 m-0 bg-transparent border-0">
+                    <img
+                      id="heart-btn"
+                      src="https://static.licdn.com/aero-v1/sc/h/f58e354mjsjpdd67eq51cuh49"
+                      alt="love"
+                      data-test-reactions-icon-type="EMPATHY"
+                      data-test-reactions-icon-theme="light"
+                      data-test-reactions-icon-style="consumption"
+                      data-test-reactions-icon-size="medium"
+                      height={20}
+                      width={20}
+                    ></img>
+                  </Button>
+                  <Button className="p-0 m-0 bg-transparent border-0 ">
+                    <img
+                      id="congrats-btn"
+                      src="https://static.licdn.com/aero-v1/sc/h/cm8d2ytayynyhw5ieaare0tl3"
+                      alt="celebrate"
+                      data-test-reactions-icon-type="PRAISE"
+                      data-test-reactions-icon-theme="light"
+                      data-test-reactions-icon-style="consumption"
+                      data-test-reactions-icon-size="medium"
+                      height={20}
+                      width={20}
+                    ></img>
+                  </Button>
+                  <p className="m-0 ms-1 fs-7 d-inline">77</p>
                 </div>
-                <div id="img-actions" className="mt-1 d-flex align-items-center justify-content-between">
-                  <div className="d-flex align-items-center">
-                    <Button className="p-0 m-0 bg-transparent border-0">
-                      <img
-                        id="like-btn"
-                        src="https://static.licdn.com/aero-v1/sc/h/2uxqgankkcxm505qn812vqyss"
-                        alt="like"
-                        data-test-reactions-icon-theme="light"
-                        data-test-reactions-icon-style="consumption"
-                        data-test-reactions-icon-size="medium"
-                        height={20}
-                        width={20}
-                      ></img>
-                    </Button>
-                    <Button className="p-0 m-0 bg-transparent border-0">
-                      <img
-                        id="heart-btn"
-                        src="https://static.licdn.com/aero-v1/sc/h/f58e354mjsjpdd67eq51cuh49"
-                        alt="love"
-                        data-test-reactions-icon-type="EMPATHY"
-                        data-test-reactions-icon-theme="light"
-                        data-test-reactions-icon-style="consumption"
-                        data-test-reactions-icon-size="medium"
-                        height={20}
-                        width={20}
-                      ></img>
-                    </Button>
-                    <Button className="p-0 m-0 bg-transparent border-0 ">
-                      <img
-                        id="congrats-btn"
-                        src="https://static.licdn.com/aero-v1/sc/h/cm8d2ytayynyhw5ieaare0tl3"
-                        alt="celebrate"
-                        data-test-reactions-icon-type="PRAISE"
-                        data-test-reactions-icon-theme="light"
-                        data-test-reactions-icon-style="consumption"
-                        data-test-reactions-icon-size="medium"
-                        height={20}
-                        width={20}
-                      ></img>
-                    </Button>
-                    <p className="m-0 ms-1 fs-7 d-inline">77</p>
-                  </div>
-                  <div className="d-flex text-secondary">
-                    <p className="m-0 ms-1 fs-6 ">4 post</p>
-                    <p className="m-0 mx-1">•</p>
-                    <p className="m-0 ms-1 fs-6 d-inline">12 diffusioni post</p>
-                  </div>
+                <div className="d-flex text-secondary">
+                  <p className="m-0 ms-1 fs-6 ">4 post</p>
+                  <p className="m-0 mx-1">•</p>
+                  <p className="m-0 ms-1 fs-6 d-inline">12 diffusioni post</p>
                 </div>
+              </div>
+              <div className="d-flex justify-content-around mt-3">
+                <Button className="d-flex align-items-center gap-1 p-0 m-0 bg-transparent border-0 text-secondary fw-bold">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" className="bi bi-hand-thumbs-up" viewBox="0 0 16 16">
+                    <path d="M8.864.046C7.908-.193 7.02.53 6.956 1.466c-.072 1.051-.23 2.016-.428 2.59-.125.36-.479 1.013-1.04 1.639-.557.623-1.282 1.178-2.131 1.41C2.685 7.288 2 7.87 2 8.72v4.001c0 .845.682 1.464 1.448 1.545 1.07.114 1.564.415 2.068.723l.048.03c.272.165.578.348.97.484.397.136.861.217 1.466.217h3.5c.937 0 1.599-.477 1.934-1.064a1.86 1.86 0 0 0 .254-.912c0-.152-.023-.312-.077-.464.201-.263.38-.578.488-.901.11-.33.172-.762.004-1.149.069-.13.12-.269.159-.403.077-.27.113-.568.113-.857 0-.288-.036-.585-.113-.856a2 2 0 0 0-.138-.362 1.9 1.9 0 0 0 .234-1.734c-.206-.592-.682-1.1-1.2-1.272-.847-.282-1.803-.276-2.516-.211a10 10 0 0 0-.443.05 9.4 9.4 0 0 0-.062-4.509A1.38 1.38 0 0 0 9.125.111zM11.5 14.721H8c-.51 0-.863-.069-1.14-.164-.281-.097-.506-.228-.776-.393l-.04-.024c-.555-.339-1.198-.731-2.49-.868-.333-.036-.554-.29-.554-.55V8.72c0-.254.226-.543.62-.65 1.095-.3 1.977-.996 2.614-1.708.635-.71 1.064-1.475 1.238-1.978.243-.7.407-1.768.482-2.85.025-.362.36-.594.667-.518l.262.066c.16.04.258.143.288.255a8.34 8.34 0 0 1-.145 4.725.5.5 0 0 0 .595.644l.003-.001.014-.003.058-.014a9 9 0 0 1 1.036-.157c.663-.06 1.457-.054 2.11.164.175.058.45.3.57.65.107.308.087.67-.266 1.022l-.353.353.353.354c.043.043.105.141.154.315.048.167.075.37.075.581 0 .212-.027.414-.075.582-.05.174-.111.272-.154.315l-.353.353.353.354c.047.047.109.177.005.488a2.2 2.2 0 0 1-.505.805l-.353.353.353.354c.006.005.041.05.041.17a.9.9 0 0 1-.121.416c-.165.288-.503.56-1.066.56z" />
+                  </svg>
+                  <p className="m-0 fs-6 d-none d-lg-block">Consiglia</p>
+                </Button>
+
+                <Button className="d-flex align-items-center gap-1 p-0 m-0 bg-transparent border-0 text-secondary fw-bold">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-chat-right-dots" viewBox="0 0 16 16">
+                    <path d="M2 1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h9.586a2 2 0 0 1 1.414.586l2 2V2a1 1 0 0 0-1-1zm12-1a2 2 0 0 1 2 2v12.793a.5.5 0 0 1-.854.353l-2.853-2.853a1 1 0 0 0-.707-.293H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2z" />
+                    <path d="M5 6a1 1 0 1 1-2 0 1 1 0 0 1 2 0m4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0m4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0" />
+                  </svg>
+                  <p className="m-0 fs-6 d-none d-lg-block">Commenta</p>
+                </Button>
+
+                <Button className="d-flex align-items-center gap-1 p-0 m-0 bg-transparent border-0 text-secondary fw-bold">
+                  <LuGitCompareArrows />
+                  <p className="m-0 fs-6 d-none d-lg-block">Diffondi il post</p>
+                </Button>
+
+                <Button className="d-flex align-items-center gap-1 p-0 m-0 bg-transparent border-0 text-secondary fw-bold">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-send-fill" viewBox="0 0 16 16">
+                    <path d="M15.964.686a.5.5 0 0 0-.65-.65L.767 5.855H.766l-.452.18a.5.5 0 0 0-.082.887l.41.26.001.002 4.995 3.178 3.178 4.995.002.002.26.41a.5.5 0 0 0 .886-.083zm-1.833 1.89L6.637 10.07l-.215-.338a.5.5 0 0 0-.154-.154l-.338-.215 7.494-7.494 1.178-.471z" />
+                  </svg>
+                  <p className="m-0 fs-6 d-none d-lg-block">Invia</p>
+                </Button>
               </div>
             </div>
           </Col>
-
-          <Col className="col-3 bg-secondary">
+          {/*Destra*/}
+          <Col className="d-none d-lg-block col-3 bg-secondary">
             <div>
               Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sunt corrupti consectetur modi illum velit minus aut. Et, sint adipisci in repudiandae
               voluptas magni cum soluta corrupti! Consectetur, voluptatum alias? Esse?

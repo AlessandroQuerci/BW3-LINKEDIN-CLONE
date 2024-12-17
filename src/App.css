@@ -10,6 +10,10 @@ html {
   background-color: #f4f2ee;
 }
 
+body {
+  background-color: #f4f2ee;
+}
+
 .bg-linkedin {
   background-color: #f4f2ee;
 }
@@ -32,11 +36,48 @@ html {
   color: black !important;
 }
 
+#NavBar {
+  z-index: 100000;
+}
+
+/*card crea-post*/
+#user-box {
+  border: 1px solid;
+  border-color: #d9e2ed;
+}
+#profile-img-btn {
+  width: 48px;
+  height: 48px;
+}
+#profile-img-btn img {
+  width: 48px;
+  height: 48px;
+  object-fit: cover;
+}
+#user-box > div > div + Button {
+  border: 1px solid;
+  border-color: #d9e2ed;
+  color: #212121;
+}
+
+#user-box > div > div + Button:hover {
+  color: #8e8a8a;
+  opacity: 50%;
+}
+
+#user-box > div + div > Button:hover {
+  cursor: pointer;
+}
+
+#user-box > div + div > Button > p:hover {
+  color: black;
+}
+
+/*main-card*/
 #close-btn {
   top: 10px;
   right: 10px;
 }
-
 #img-btn {
   width: 48px;
   height: 48px;
@@ -45,21 +86,30 @@ html {
   width: 48px;
   height: 48px;
 }
-
-#user-info p:nth-child(3):after {
+#user-info div p::after {
   content: " • ";
 }
-
 #follow-btn {
   top: 0px;
   right: 10px;
 }
-
 #bg-img {
   background-color: #d9e2ed;
 }
-
 #heart-btn,
 #congrats-btn {
   margin-left: -10px;
+}
+#img-actions > div > Button + p:hover {
+  text-decoration: underline;
+  color: blue;
+  cursor: pointer;
+}
+#img-actions > div + div:hover {
+  text-decoration: underline;
+
+  cursor: pointer;
+}
+#img-actions > div + div > p:hover {
+  color: blue;
 }

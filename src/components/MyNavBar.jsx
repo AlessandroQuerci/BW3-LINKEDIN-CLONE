@@ -20,7 +20,7 @@ import { BsFillGrid3X3GapFill } from "react-icons/bs";
 
 const MyNavBar = () => {
   return (
-    <>
+    <div id="NavBar" className="bg-white position-sticky top-0">
       <Container className="d-flex justify-content-start justify-content-lg-center align-items-center">
         <Navbar className="bg-white">
           <Container>
@@ -100,7 +100,7 @@ const MyNavBar = () => {
           </Container>
         </Navbar>
       </Container>
-    </>
+    </div>
   );
 };
 
