@@ -328,6 +328,10 @@ svg:hover {
 }
 
 /*footer destro*/
+#in-primo-piano + div > div + div + div {
+  line-height: 50%;
+}
+
 #in-primo-piano + div > div + div + div > a {
   text-decoration: none;
   color: #454444;

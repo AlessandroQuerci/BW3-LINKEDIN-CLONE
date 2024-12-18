@@ -636,7 +636,7 @@ const Home = () => {
                 <p className="p-1 m-0 rounded fs-7">SUGGERIMENTO</p>
                 <p className="m-0 fs-6 fw-bold">Prova Linkedin sull app per Windows</p>
               </div>
-              <div className="d-flex flex-wrap justify-content-center gap-3 mt-3 px-7">
+              <div className="d-flex flex-wrap justify-content-center gap-3 mt-3 px-7 line-2">
                 <a href="" className="fs-7">
                   Informazioni
                 </a>
