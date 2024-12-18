@@ -6,6 +6,15 @@
   font-size: 0.5rem !important;
 }
 
+.px-6 {
+  padding-left: 3.5rem;
+  padding-right: 3.5rem;
+}
+.px-7 {
+  padding-left: 4rem;
+  padding-right: 4rem;
+}
+
 html {
   background-color: #f4f2ee;
 }
@@ -83,8 +92,8 @@ body {
 
 #left-profile-btn + div + div > p + div:hover {
   cursor: pointer;
-  background-color: #e6e7e8b8;
   color: blue;
+  background-color: #e6e7e8b8;
   text-decoration: underline;
 }
 #left-profile-btn + div + div > p + div + div:hover {
@@ -297,4 +306,37 @@ p {
 svg:hover {
   color: #212121;
   fill: #212121;
+}
+
+/*card con immagine*/
+#in-primo-piano + div {
+  position: sticky;
+  top: 86px;
+}
+#in-primo-piano + div > div {
+  height: 100%;
+  width: 100%;
+}
+
+#in-primo-piano + div > div > img {
+  height: 100%;
+  width: 100%;
+}
+#in-primo-piano + div > div + div > p:nth-child(1) {
+  background-color: #fce3bc;
+  color: #454444;
+}
+
+/*footer destro*/
+#in-primo-piano + div > div + div + div > a {
+  text-decoration: none;
+  color: #454444;
+}
+#in-primo-piano + div > div + div + div > a:hover {
+  text-decoration: underline;
+  color: blue;
+}
+
+#in-primo-piano + div > div + div + div > img {
+  width: 60px;
 }
