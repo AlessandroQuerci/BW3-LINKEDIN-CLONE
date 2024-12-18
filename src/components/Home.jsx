@@ -10,23 +10,71 @@ const Home = () => {
       <Container fluid className="mt-4 mb-5">
         <Row className="d-flex justify-content-center gap-3">
           {/*Sinistra*/}
-          <Col className="col-2 ">
-            <div className="d-flex flex-column p-2  rounded bg-primary">
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sunt corrupti consectetur modi illum velit minus aut. Et, sint adipisci in repudiandae
-              voluptas magni cum soluta corrupti! Consectetur, voluptatum alias? Esse?
+          <Col className="col-3 col-lg-2 ">
+            <div className="d-flex flex-column rounded bg-white position-relative">
+              <div id="img-sfondo-profile" className="p-0 m-0 position-absolute ">
+                <img
+                  src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fHRlY2h8ZW58MHwwfDB8fHww"
+                  alt=""
+                  className="img-fluid rounded"
+                />
+              </div>
+              <Button
+                id="left-profile-btn"
+                className="d-flex flex-column justify-content-center align-items-center bg-transparent rounded-0 border-0 border-bottom border-1 mt-4 pb-5 pt-0"
+              >
+                <div id="left-profile-img-btn" className="rounded-circle">
+                  <img
+                    src="https://plus.unsplash.com/premium_photo-1688740375397-34605b6abe48?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fHByb2ZpbGUlMjBwaWN8ZW58MHx8MHx8fDA%3D"
+                    alt=""
+                    className=" rounded-circle"
+                  />
+                </div>
+                <p className="mb-0 mt-4 fw-bold">Nome e Cognome</p>
+              </Button>
+              <div className="mt-2 mb-2 px-2 border-bottom border-1">
+                <p className="fs-7 mb-0 pt-1 fw-bold">Collegamento</p>
+                <p className="fs-7 mb-0 pb-1 fw-bold">Espandi la tua rete</p>
+              </div>
+              <div className="mt-2 mb-2 px-2 border-bottom border-1">
+                <p className="fs-7 mb-0 pt-1 fw-bold">Accedi a strumenti e informazioni in esclusiva</p>
+                <div className="d-flex align-items-center gap-2 pb-2 border-bottom border-1">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="#E7A33E" className="bi bi-coin" viewBox="0 0 16 16">
+                    <path d="M5.5 9.511c.076.954.83 1.697 2.182 1.785V12h.6v-.709c1.4-.098 2.218-.846 2.218-1.932 0-.987-.626-1.496-1.745-1.76l-.473-.112V5.57c.6.068.982.396 1.074.85h1.052c-.076-.919-.864-1.638-2.126-1.716V4h-.6v.719c-1.195.117-2.01.836-2.01 1.853 0 .9.606 1.472 1.613 1.707l.397.098v2.034c-.615-.093-1.022-.43-1.114-.9zm2.177-2.166c-.59-.137-.91-.416-.91-.836 0-.47.345-.822.915-.925v1.76h-.005zm.692 1.193c.717.166 1.048.435 1.048.91 0 .542-.412.914-1.135.982V8.518z" />
+                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+                    <path d="M8 13.5a5.5 5.5 0 1 1 0-11 5.5 5.5 0 0 1 0 11m0 .5A6 6 0 1 0 8 2a6 6 0 0 0 0 12" />
+                  </svg>
+                  <p className="fs-7 fw-bold m-0 p-0 ">Prova Premium per 0 EUR</p>
+                </div>
+
+                <div className="d-flex align-items-center gap-2 pt-2 ">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="#5E5E5E" className="bi bi-bookmark-fill" viewBox="0 0 16 16">
+                    <path d="M2 2v13.5a.5.5 0 0 0 .74.439L8 13.069l5.26 2.87A.5.5 0 0 0 14 15.5V2a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2" />
+                  </svg>
+                  <p className="fs-7 fw-bold m-0 p-0 ">Elementi salvati</p>
+                </div>
+              </div>
             </div>
             <div id="see-more" className="d-flex flex-column mt-2 rounded bg-white">
               <a className="fs-7 fw-bold px-2 py-1 mt-3" href="">
                 Gruppi
               </a>
-              <a className="fs-7 fw-bold px-2 py-1 pb-2 mt-2 border-bottom border-1" href="">
-                Eventi
-              </a>
+              <div className="d-flex justify-content-between align-items-center">
+                <a className="fs-7 fw-bold px-2 py-1 pb-2 mt-2 border-bottom border-1" href="">
+                  Eventi
+                </a>
+                <div className=" rounded-circle align-middle me-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#4a4949" className="bi bi-plus" viewBox="0 0 16 16">
+                    <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
+                  </svg>
+                </div>
+              </div>
+
               <Button className="m-0 py-2 border-0 fw-bold fs-6">Scopri di più</Button>
             </div>
           </Col>
           {/*Centro*/}
-          <Col className="d-flex flex-column col-7 col-lg-4 ">
+          <Col className="d-flex flex-column col-6 col-lg-4 ">
             <div id="user-box" className="bg-white rounded p-2">
               <div className="d-flex justify-content-around gap-2">
                 <div id="profile-img-btn">
@@ -317,10 +365,41 @@ const Home = () => {
             </div>
           </Col>
           {/*Destra*/}
-          <Col className="d-none d-lg-block col-3 bg-secondary">
-            <div>
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sunt corrupti consectetur modi illum velit minus aut. Et, sint adipisci in repudiandae
-              voluptas magni cum soluta corrupti! Consectetur, voluptatum alias? Esse?
+          <Col className="d-none d-lg-block col-3 p-0">
+            <div id="in-primo-piano" className="bg-white rounded">
+              <h4 className="px-3 pt-2">In primo piano</h4>
+              <p className="fw-bold mb-2 px-3">a cura di Linkedin Notizie</p>
+              <div id="article-title" className="px-3 mb-2">
+                <h6 className="m-0">Tech: le tendenze del 2025</h6>
+                <p className="fs-7 m-0 d-inline">3 ore fa</p>
+                <p className="fs-7 m-0 d-inline ms-1">1.760 lettori</p>
+              </div>
+              <div id="article-title" className="px-3 mb-2">
+                <h6 className="m-0">Revolut</h6>
+                <p className="fs-7 m-0 d-inline">1 giorno fa</p>
+                <p className="fs-7 m-0 d-inline ms-1">624 lettori</p>
+              </div>
+              <div id="article-title" className="px-3 mb-2">
+                <h6 className="m-0">Istantanee dal Maximall Pompeii</h6>
+                <p className="fs-7 m-0 d-inline">3 ore fa</p>
+                <p className="fs-7 m-0 d-inline ms-1">320 lettori</p>
+              </div>
+              <div id="article-title" className="px-3 mb-2">
+                <h6 className="m-0">Come sarà il lavoro nel 2025</h6>
+                <p className="fs-7 m-0 d-inline">59 minuti fa</p>
+                <p className="fs-7 m-0 d-inline ms-1">47 lettori</p>
+              </div>
+              <div id="article-title" className="px-3 mb-2">
+                <h6 className="m-0">Big Ideas: 15 spunti per il 2925</h6>
+                <p className="fs-7 m-0 d-inline">3 ore fa</p>
+                <p className="fs-7 m-0 d-inline ms-1">4.478 lettori</p>
+              </div>
+              <div id="vedi-altro" className="d-flex align-items-baseline gap-1 px-3">
+                <p className="fw-bold">Vedi altro</p>
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="#8E8A8A" className="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                  <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
+                </svg>
+              </div>
             </div>
           </Col>
         </Row>

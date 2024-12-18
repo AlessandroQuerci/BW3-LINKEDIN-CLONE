@@ -37,10 +37,61 @@ body {
 }
 
 #NavBar {
+  z-index: 1000;
+}
+
+/*LATO SINISTRO*/
+/*prima card*/
+#img-sfondo-profile {
+  height: 60px;
+  overflow: hidden;
+}
+
+#left-profile-btn {
   z-index: 10;
 }
 
-/*CARD SINISTRA*/
+#left-profile-img-btn {
+  width: 65px;
+  height: 65px;
+  outline: 3px solid white;
+}
+#left-profile-img-btn img {
+  width: 65px;
+  height: 65px;
+  object-fit: cover;
+}
+
+#left-profile-btn > div + p {
+  color: #454444;
+}
+
+#left-profile-btn > div + p:hover {
+  text-decoration: underline;
+}
+
+#left-profile-btn + div p:nth-child(1) {
+  color: #8e8a8a;
+}
+#left-profile-btn + div:hover {
+  background-color: #e6e7e8b8;
+  cursor: pointer;
+}
+#left-profile-btn + div + div > p {
+  color: #8e8a8a;
+}
+
+#left-profile-btn + div + div > p + div:hover {
+  cursor: pointer;
+  background-color: #e6e7e8b8;
+  color: blue;
+  text-decoration: underline;
+}
+#left-profile-btn + div + div > p + div + div:hover {
+  cursor: pointer;
+  background-color: #e6e7e8b8;
+}
+/*seconda card*/
 #see-more a {
   text-decoration: none;
 }
@@ -52,17 +103,25 @@ body {
   text-decoration: underline;
 }
 
-#see-more > a + Button {
-  color: #4a4949;
+#see-more > div + Button {
+  color: #454444;
   background-color: white;
 }
 
-#see-more > a + Button:hover {
+#see-more > div + Button:hover {
   color: #212121;
   background-color: #e6e7e8b8;
 }
 
-/*CARD CENTRALE*/
+#see-more > div > div {
+  background-color: white;
+}
+#see-more > div > div:hover {
+  background-color: #e6e7e8b8;
+  cursor: pointer;
+}
+
+/*PARTE CENTRALE*/
 /*Modale*/
 .modal dialog {
   height: 80%;
@@ -207,4 +266,35 @@ div > hr + p {
 
 .dropdown-menu {
   --bs-dropdown-link-hover-bg: none;
+}
+
+/*LATO DESTRO*/
+/**/
+
+#in-primo-piano > h4 + p {
+  color: #8e8a8a;
+}
+
+#article-title > h6 + p,
+p {
+  color: #8e8a8a;
+}
+
+#article-title > h6 + p::after {
+  content: "   •";
+}
+
+#article-title:hover {
+  cursor: pointer;
+  background-color: #e6e7e8b8;
+}
+
+#vedi-altro:hover {
+  cursor: pointer;
+  background-color: #e6e7e8b8;
+}
+#vedi-altro p:hover,
+svg:hover {
+  color: #212121;
+  fill: #212121;
 }
