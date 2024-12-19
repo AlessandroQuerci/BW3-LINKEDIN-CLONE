@@ -111,3 +111,14 @@ html {
   width: 128px;
   height: 128px;
 }
+
+.profileControls:hover {
+  border: 2px solid black !important;
+}
+.profileControls:focus {
+  border: 3px solid black !important;
+  outline: none;
+  transition: border-color 0.3s ease;
+  box-shadow: 0 0 32px 4px rgba(255, 255, 255, 0.7);
+  transition: box-shadow 0.3s ease;
+}
