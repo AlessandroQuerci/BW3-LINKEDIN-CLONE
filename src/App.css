@@ -173,6 +173,10 @@ body {
   opacity: 50%;
 }
 
+#user-box > div > img + p > strong {
+  color: #212121;
+}
+
 #user-box > div + div > Button:hover {
   cursor: pointer;
 }

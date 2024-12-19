@@ -3,14 +3,15 @@ import { Button, ButtonGroup, Col, Container, Dropdown, DropdownButton, Row } fr
 //ICONE
 import { LuGitCompareArrows } from "react-icons/lu";
 import ProfileModal from "./ProfileModal";
+import PostCard from "./PostCard";
 
 const Home = () => {
   return (
     <>
       <Container fluid className="mt-4 mb-5">
-        <Row className="d-flex justify-content-center gap-3">
+        <Row className="d-flex flex-column flex-md-row justify-content-center gap-3">
           {/*Sinistra*/}
-          <Col className="col-3 col-lg-2 ">
+          <Col className="col-12 col-md-3 col-lg-2 ">
             <div className="d-flex flex-column rounded bg-white position-relative">
               <div id="img-sfondo-profile" className="p-0 m-0 position-absolute ">
                 <img
@@ -74,7 +75,8 @@ const Home = () => {
             </div>
           </Col>
           {/*Centro*/}
-          <Col className="d-flex flex-column col-6 col-lg-4 ">
+          <Col className="d-flex flex-column col.12 col-md-6 col-lg-4 ">
+            <PostCard />
             <div id="user-box" className="bg-white rounded p-2">
               <div className="d-flex justify-content-around gap-2">
                 <div id="profile-img-btn">
@@ -168,7 +170,7 @@ const Home = () => {
                   />
                 </div>
                 <div id="user-info" className="d-flex flex-column">
-                  <p className="m-0 fs-6 fw-bold d-block">Nome Azienda</p>
+                  <p className="m-0 fs-6 fw-bold d-block text-black">Nome Azienda</p>
                   <p className="m-0 fs-7 ">10.000 follower</p>
                   <div className="d-flex align-items-center gap-1">
                     <p className="m-0 fs-7">N. giorni</p>
@@ -636,7 +638,7 @@ const Home = () => {
                 <p className="p-1 m-0 rounded fs-7">SUGGERIMENTO</p>
                 <p className="m-0 fs-6 fw-bold">Prova Linkedin sull app per Windows</p>
               </div>
-              <div className="d-flex flex-wrap justify-content-center gap-3 mt-3 px-7 line-2">
+              <div className="d-flex flex-wrap justify-content-center gap-3 mt-3 px-7">
                 <a href="" className="fs-7">
                   Informazioni
                 </a>
