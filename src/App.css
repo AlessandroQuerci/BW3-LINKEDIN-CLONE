@@ -1,5 +1,5 @@
 .fs-7 {
-  font-size: 0.75rem !important;
+  font-size: 0.85rem !important;
 }
 
 .fs-8 {
@@ -19,16 +19,20 @@ html {
 }
 
 #link:hover {
+  transition: 0.3s ease;
   color: black !important;
 }
 #link p:hover {
+  transition: 0.3s ease;
   color: black !important;
 }
 
 #myFooter a:hover {
+  transition: 0.3s ease;
   color: black !important;
 }
 #myFooter p:hover {
+  transition: 0.3s ease;
   color: black !important;
 }
 
@@ -46,9 +50,64 @@ html {
   top: 15px;
 }
 
-/* Posizione del bottone "Aggiungi Foto" */
 #addPhoto {
   position: absolute;
-  bottom: 620px;
-  left: 425px;
+  bottom: -35px;
+  left: 10px;
+}
+
+#userNoPhoto {
+  position: relative;
+}
+.slick-prev:before,
+.slick-next:before {
+  color: gray !important;
+}
+
+.slick-prev:before {
+  display: none;
+}
+
+.showBtns:hover {
+  transition: 0.3s ease;
+  background-color: #f3f3f3 !important;
+}
+
+.bg-blu-linkedin {
+  background-color: #0a66c2 !important;
+}
+
+.border-linkedin {
+  background-color: #0a66c2 !important;
+}
+
+.text-linkedin {
+  color: #0a66c2 !important;
+}
+
+.blueBtns:hover {
+  transition: 0.3s ease;
+  background-color: #ebf4fd !important;
+  border-color: #024383 !important;
+}
+
+.deepBtns:hover {
+  transition: 0.3s ease;
+  background-color: #004182 !important;
+}
+
+.blackBtns:hover {
+  transition: 0.3s ease;
+  background-color: #f3f3f3 !important;
+  border-color: black !important;
+  color: black !important;
+}
+
+.pencilBtns:hover {
+  background-color: #f3f3f3 !important;
+}
+
+#userImage {
+  width: 128px;
+  height: 128px;
 }
