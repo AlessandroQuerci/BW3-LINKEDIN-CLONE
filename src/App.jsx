@@ -15,7 +15,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/profile/:id" element={<ProfilePage />} />
         </Routes>
-        <MyFooter />
+        {/*<MyFooter />*/}
       </BrowserRouter>
     </>
   );

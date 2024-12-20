@@ -6,7 +6,20 @@
   font-size: 0.5rem !important;
 }
 
+.px-6 {
+  padding-left: 3.5rem;
+  padding-right: 3.5rem;
+}
+.px-7 {
+  padding-left: 4rem;
+  padding-right: 4rem;
+}
+
 html {
+  background-color: #f4f2ee;
+}
+
+body {
   background-color: #f4f2ee;
 }
 
@@ -103,11 +116,310 @@ html {
   color: black !important;
 }
 
-.pencilBtns:hover {
-  background-color: #f3f3f3 !important;
+#NavBar {
+  z-index: 1000;
 }
 
-#userImage {
-  width: 128px;
-  height: 128px;
+/*LATO SINISTRO*/
+/*prima card*/
+#img-sfondo-profile {
+  height: 60px;
+  overflow: hidden;
+}
+
+#left-profile-btn {
+  z-index: 10;
+}
+
+#left-profile-img-btn {
+  width: 65px;
+  height: 65px;
+  outline: 3px solid white;
+}
+#left-profile-img-btn img {
+  width: 65px;
+  height: 65px;
+  object-fit: cover;
+}
+
+#left-profile-btn > div + p {
+  color: #454444;
+}
+
+#left-profile-btn > div + p:hover {
+  text-decoration: underline;
+}
+
+#left-profile-btn + div p:nth-child(1) {
+  color: #8e8a8a;
+}
+#left-profile-btn + div:hover {
+  background-color: #e6e7e8b8;
+  cursor: pointer;
+}
+#left-profile-btn + div + div > p {
+  color: #8e8a8a;
+}
+
+#left-profile-btn + div + div > p + div:hover {
+  cursor: pointer;
+  color: blue;
+  background-color: #e6e7e8b8;
+  text-decoration: underline;
+}
+#left-profile-btn + div + div > p + div + div:hover {
+  cursor: pointer;
+  background-color: #e6e7e8b8;
+}
+/*seconda card*/
+#see-more a {
+  text-decoration: none;
+}
+#see-more a:nth-child(2) {
+  border-color: #6c757d;
+}
+
+#see-more a:hover {
+  text-decoration: underline;
+}
+
+#see-more > div + Button {
+  color: #454444;
+  background-color: white;
+}
+
+#see-more > div + Button:hover {
+  color: #212121;
+  background-color: #e6e7e8b8;
+}
+
+#see-more > div > div {
+  background-color: white;
+}
+#see-more > div > div:hover {
+  background-color: #e6e7e8b8;
+  cursor: pointer;
+}
+
+/*PARTE CENTRALE*/
+/*Modale*/
+.modal dialog {
+  height: 80%;
+  width: 100%;
+  max-width: none;
+}
+.modal-content {
+  z-index: 20;
+  height: 100%;
+  width: 100%;
+}
+
+@media (min-width: 576px) {
+  .modal-dialog {
+    max-width: fit-content;
+  }
+}
+/*card crea-post*/
+#user-box {
+  border: 1px solid;
+  border-color: #d9e2ed;
+}
+#profile-img-btn {
+  width: 48px;
+  height: 48px;
+}
+#profile-img-btn img {
+  width: 48px;
+  height: 48px;
+  object-fit: cover;
+}
+#create-post {
+  border: 1px solid;
+  border-color: #d9e2ed;
+  color: #212121;
+}
+
+#create-post:hover {
+  color: #8e8a8a;
+  opacity: 50%;
+}
+
+#user-box > div > img + p > strong {
+  color: #212121;
+}
+
+#user-box > div + div > Button:hover {
+  cursor: pointer;
+}
+
+#user-box > div + div > Button > p:hover {
+  color: black;
+}
+
+div > hr + p {
+  color: #8e8a8a;
+}
+
+#dropdown-basic {
+  margin: 0;
+  padding: 0;
+  background: none;
+  border: none;
+  color: black;
+  font-size: 0.75rem;
+}
+
+.dropdown-menu.show p:nth-child(3) {
+  color: #6c757d;
+}
+
+.dropdown-item img {
+  transition: transform 0.3s ease;
+}
+.dropdown-item img:hover {
+  transform: translateY(-25px) scale(1.4);
+}
+/*main-card*/
+#close-btn {
+  top: 10px;
+  right: 10px;
+}
+#img-btn {
+  width: 48px;
+  height: 48px;
+}
+#img-btn img {
+  width: 48px;
+  height: 48px;
+}
+#user-info > Link {
+  text-decoration: line-through;
+}
+#user-info div p::after {
+  content: " • ";
+}
+#follow-btn {
+  top: 0px;
+  right: 10px;
+}
+/*#bg-img {
+  background-color: #d9e2ed;
+}
+*/
+#heart-btn,
+#congrats-btn {
+  margin-left: -10px;
+}
+#img-actions > div > Button + p:hover {
+  text-decoration: underline;
+  color: blue;
+  cursor: pointer;
+}
+#img-actions > div + div:hover {
+  text-decoration: underline;
+
+  cursor: pointer;
+}
+#img-actions > div + div > p:hover {
+  color: blue;
+}
+
+.dropup .dropdown-toggle {
+  background-color: transparent;
+  border: none;
+  color: #6c757d;
+  font-weight: bold;
+}
+
+.dropup .dropdown-toggle::after {
+  display: none;
+  margin-left: none;
+  vertical-align: none;
+  content: "";
+  border-top: none;
+  border-right: none;
+  border-bottom: none;
+  border-left: none;
+}
+
+.dropup .dropdown-toggle:hover {
+  color: black;
+}
+
+.dropdown-menu.show {
+  display: block;
+  background-color: transparent;
+  border: none;
+}
+
+.dropdown-menu {
+  --bs-dropdown-link-hover-bg: none;
+}
+
+/*LATO DESTRO*/
+/**/
+
+#in-primo-piano > h4 + p {
+  color: #8e8a8a;
+}
+
+#article-title > h6 + p,
+p {
+  color: #8e8a8a;
+}
+
+#article-title > h6 + p::after {
+  content: "   •";
+}
+
+#article-title:hover {
+  cursor: pointer;
+  background-color: #e6e7e8b8;
+}
+
+#vedi-altro:hover {
+  cursor: pointer;
+  background-color: #e6e7e8b8;
+}
+#vedi-altro p:hover,
+svg:hover {
+  color: #212121;
+  fill: #212121;
+}
+
+/*card con immagine*/
+#in-primo-piano + div {
+  position: sticky;
+  top: 86px;
+}
+#in-primo-piano + div > div {
+  height: 100%;
+  width: 100%;
+}
+
+#in-primo-piano + div > div > img {
+  height: 100%;
+  width: 100%;
+}
+#in-primo-piano + div > div + div > p:nth-child(1) {
+  background-color: #fce3bc;
+  color: #454444;
+}
+
+/*footer destro*/
+#in-primo-piano + div > div + div + div {
+  line-height: 50%;
+}
+
+#in-primo-piano + div > div + div + div > a {
+  text-decoration: none;
+  color: #454444;
+}
+#in-primo-piano + div > div + div + div > a:hover {
+  text-decoration: underline;
+  color: blue;
+}
+
+#in-primo-piano + div > div + div + div > img {
+  width: 60px;
 }
