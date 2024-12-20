@@ -18,7 +18,7 @@ import littleWindow from "../assets/image/window.png";
 import hiring from "../assets/image/hiring.png";
 import users from "../assets/image/users.png";
 import fotoChange from "../assets/image/foto-change.png";
-
+//POST COMMMIT
 //ACTIONS
 import {
   SET_AREA,
