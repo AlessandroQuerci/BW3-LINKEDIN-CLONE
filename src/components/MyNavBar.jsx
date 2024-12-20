@@ -15,14 +15,13 @@ import { HiUsers } from "react-icons/hi2";
 import { BsBriefcaseFill } from "react-icons/bs";
 import { TbMessageCircleFilled } from "react-icons/tb";
 import { FaBell } from "react-icons/fa";
-
 import { BsFillGrid3X3GapFill } from "react-icons/bs";
 
 const MyNavBar = () => {
   return (
     <>
       <div id="NavBar" className="bg-white position-sticky top-0">
-        <Container fluid className="d-flex justify-content-start justify-content-lg-center align-items-center ">
+        <Container className="d-flex justify-content-start justify-content-lg-center align-items-center">
           <Navbar className="bg-white">
             <Container>
               <Link to={"/"}>
