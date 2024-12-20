@@ -40,9 +40,19 @@ import {
   UPDATE_SURNAME,
   UPDATE_TITLE,
   UPDATE_USERNAME,
+  SET_COMPANY,
+  SET_DESCRIPTION,
+  SET_STARTDATE,
+  SET_ROLE,
+  SET_ENDDATE,
+  SET_EXPERIENCE_AREA,
+  SET_EXPERIENCE_IMAGE,
 } from "../redux/actions";
 
 //ICONE
+import { LuSchool } from "react-icons/lu";
+import { IoMdClose } from "react-icons/io";
+import { FaBriefcase } from "react-icons/fa6";
 import { FaCamera } from "react-icons/fa";
 import { IoShieldCheckmarkOutline } from "react-icons/io5";
 import { FaEye } from "react-icons/fa";
@@ -88,7 +98,8 @@ const ProfilePage = () => {
   const updateArea = useSelector((state) => state.updateProfile.user.area);
   const updateTitle = useSelector((state) => state.updateProfile.user.title);
   const updateBio = useSelector((state) => state.updateProfile.user.bio);
-
+  const myExperience = useSelector((state) => state.experience.user);
+  console.log(myExperience);
   const updatedProfile = {
     name: updateName,
     surname: updateSurname,
@@ -119,6 +130,11 @@ const ProfilePage = () => {
 
   const closeProfileModal = () => setProfileModal(false);
   const showProfileModal = () => setProfileModal(true);
+  //PROFILE MODAL
+  const [experienceModal, setExperienceModal] = useState(false);
+
+  const closeExperienceModal = () => setExperienceModal(false);
+  const showExperienceModal = () => setExperienceModal(true);
 
   //FORM
   const handleChange = (actionType, value) => {
@@ -202,6 +218,28 @@ const ProfilePage = () => {
       })
       .then((profileUpdate) => {
         console.log("Profilo aggiornato con successo!");
+      });
+  };
+  const fetchCreateExperience = () => {
+    const URL = `https://striveschool-api.herokuapp.com/api/profile/${userId}/experiences`;
+    fetch(URL, {
+      method: "POST",
+      body: JSON.stringify(myExperience),
+      headers: {
+        "Content-Type": "application/json",
+        Authorization:
+          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzYyYWYzMjUzMDRhNzAwMTUxNDhiZTAiLCJpYXQiOjE3MzQ1MjA2MjcsImV4cCI6MTczNTczMDIyN30.mhSupLJTXzuAHLaVzdr8ERg_CfF7bu8V2VsSxBuTB-s",
+      },
+    })
+      .then((resp) => {
+        if (resp.ok) {
+          return resp.json();
+        } else {
+          throw new Error("Errore nella richiesta!");
+        }
+      })
+      .then((experience) => {
+        console.log("Experience aggiunta con successo!");
       });
   };
 
@@ -544,6 +582,162 @@ const ProfilePage = () => {
               <Button className="border-0 bg-transparent text-secondary w-100 rounded-0 rounded-bottom border-top p-0 m-0 py-2 d-flex justify-content-center align-items-center  fw-bold showBtns">
                 Mostra tutte le attività <FaLongArrowAltRight className="ms-1" />
               </Button>
+            </div>
+            <div className="d-flex flex-column bg-white border border-1 rounded-3  mb-2 dashed-border">
+              <div className="px-3 pt-2">
+                <div className="d-flex justify-content-between align-items-top mb-3">
+                  <div className="pt-2">
+                    <h3 className="fs-5 m-0 text-secondary">Esperienza</h3>
+                    <p className="fs-7 fw-light mb-2">
+                      Metti in risalto i risultati raggiunti e ottieni fino a 2 volte più visualizzazioni del profilo e collegamenti
+                    </p>
+                    <div className="d-flex  justify-content-start align-items-center mb-3">
+                      <FaBriefcase className="fs-1 p-2 text-secondary border  border-black border-1 rounded " />
+                      <div className="d-flex flex-column">
+                        <p className="m-0 ms-2 fs-6 text-secondary ">Qualifica</p>
+                        <p className="m-0 ms-2 fs-8 text-secondary ">Organizzazione</p>
+                        <p className="m-0 ms-2 fs-8 text-secondary ">2023 - Presente</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className=" d-flex justify-content-end align-items-center">
+                    <Button className="border-0 bg-transparent rounded-circle d-flex justify-content-center align-items-center p-3 pencilBtns">
+                      <IoMdClose className="fs-5 text-black  " />
+                    </Button>
+                  </div>
+                </div>
+                <Button
+                  className="rounded-pill bg-white text-linkedin fw-bold fs-6 py-1 d-flex justify-content-center align-items-center me-2 mb-4 border-primary blueBtns "
+                  onClick={showExperienceModal}
+                >
+                  Aggiungi un esperienza
+                </Button>
+                <Modal show={experienceModal} onHide={closeExperienceModal} size="lg">
+                  <Modal.Header closeButton>
+                    <Modal.Title className="fs-5">Modifica Presentazione</Modal.Title>
+                  </Modal.Header>
+                  <Modal.Body className="py-3 px-3 d-flex justify-content-start flex-column">
+                    <p className="py-3 text-secondary fs-7">* Indica che è obbligatorio</p>
+                    <Form
+                      onSubmit={(e) => {
+                        e.preventDefault();
+                        fetchCreateExperience();
+                      }}
+                    >
+                      <Form.Group className="mb-3">
+                        <Form.Label className="fs-7 text-secondary m-o">Qualifica*</Form.Label>
+                        <Form.Control
+                          placeholder="Scrivi la tua qualifica qui..."
+                          className="border-1 border-black fs-7 profileControls"
+                          onChange={(e) => handleChange(SET_ROLE, e.target.value)}
+                        />
+                      </Form.Group>
+                      <Form.Group className="mb-3">
+                        <Form.Label className="fs-7 text-secondary m-o">Impiego*</Form.Label>
+                        <Form.Control
+                          placeholder="Scrivi il tuo impiego qui..."
+                          className="border-1 border-black fs-7 profileControls"
+                          onChange={(e) => handleChange(SET_COMPANY, e.target.value)}
+                        />
+                      </Form.Group>
+                      <Form.Group className="mb-3">
+                        <Form.Label className="fs-7 text-secondary m-o">Inizio Esperienza*</Form.Label>
+                        <Form.Control
+                          placeholder="Scrivi l'inizio della tua esperienza qui..."
+                          className="border-1 border-black fs-7 profileControls"
+                          onChange={(e) => handleChange(SET_STARTDATE, e.target.value)}
+                        />
+                      </Form.Group>
+                      <Form.Group className="mb-3">
+                        <Form.Label className="fs-7 text-secondary m-o">FIne Esperienza*</Form.Label>
+                        <Form.Control
+                          placeholder="Scrivi la fine della tua esperienza qui..."
+                          className="border-1 border-black fs-7 profileControls"
+                          onChange={(e) => handleChange(SET_ENDDATE, e.target.value)}
+                        />
+                      </Form.Group>
+                      <Form.Group className="mb-3">
+                        <Form.Label className="fs-7 text-secondary m-o">Descizione*</Form.Label>
+                        <Form.Control
+                          placeholder="Scrivi la descrizione qui..."
+                          className="border-1 border-black fs-7 profileControls"
+                          onChange={(e) => handleChange(SET_DESCRIPTION, e.target.value)}
+                        />
+                      </Form.Group>
+                      <Form.Group className="mb-3">
+                        <Form.Label className="fs-7 text-secondary m-o">Localita*</Form.Label>
+                        <Form.Control
+                          placeholder="Scrivi la localita qui..."
+                          className="border-1 border-black fs-7 profileControls"
+                          onChange={(e) => handleChange(SET_EXPERIENCE_AREA, e.target.value)}
+                        />
+                      </Form.Group>
+                      <Button
+                        type="submit"
+                        className="rounded-pill bg-blu-linkedin text-white fw-bold fs-6 py-1 px-3 d-flex justify-content-center align-items-center me-2 deepBtns"
+                      >
+                        Salva
+                      </Button>
+                    </Form>
+                  </Modal.Body>
+                </Modal>
+              </div>
+            </div>
+            <div className="d-flex flex-column bg-white border border-1 rounded-3  mb-2 dashed-border">
+              <div className="px-3 pt-2">
+                <div className="d-flex justify-content-between align-items-top mb-3">
+                  <div className="pt-2">
+                    <h3 className="fs-5 m-0 text-secondary">Formazione</h3>
+                    <p className="fs-7 fw-light mb-2">
+                      Mostrando le tue qualifiche avrai fino a 2 volte più probabilità di ricevere in messaggio in Mail da recrutier
+                    </p>
+                    <div className="d-flex  justify-content-start align-items-center mb-3">
+                      <LuSchool className="fs-1 p-2 text-secondary border  border-black border-1 rounded " />
+                      <div className="d-flex flex-column">
+                        <p className="m-0 ms-2 fs-6 text-secondary ">Scuola o Università</p>
+                        <p className="m-0 ms-2 fs-8 text-secondary ">Laura, Campo di studio</p>
+                        <p className="m-0 ms-2 fs-8 text-secondary ">2019 - 2023</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className=" d-flex justify-content-end align-items-center">
+                    <Button className="border-0 bg-transparent rounded-circle d-flex justify-content-center align-items-center p-3 pencilBtns">
+                      <IoMdClose className="fs-5 text-black  " />
+                    </Button>
+                  </div>
+                </div>
+                <Button className="rounded-pill bg-white text-linkedin fw-bold fs-6 py-1 d-flex justify-content-center align-items-center me-2 mb-4 border-primary blueBtns ">
+                  Aggiungi un titolo di studio
+                </Button>
+              </div>
+            </div>
+            <div className="d-flex flex-column bg-white border border-1 rounded-3  mb-2 dashed-border mb-5">
+              <div className="px-3 pt-2">
+                <div className="d-flex justify-content-between align-items-top mb-3">
+                  <div className="pt-2">
+                    <h3 className="fs-5 m-0 text-secondary">Competenze</h3>
+                    <p className="fs-7 fw-light mb-2">
+                      Fai capire se hai un profilo adatto per le nuove opportunità: il 50% dei recruiter usa i dati sulle competenze per coprire le posizioni
+                      aperte
+                    </p>
+                    <div className="d-flex  justify-content-start align-items-center mb-3">
+                      <div className="d-flex flex-column">
+                        <p className="m-0 ms-2 fs-6 text-secondary ">Soft Skills</p>
+                        <hr />
+                        <p className="m-0 ms-2 fs-6 text-secondary ">Competenze tecniche</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className=" d-flex justify-content-end align-items-center">
+                    <Button className="border-0 bg-transparent rounded-circle d-flex justify-content-center align-items-center p-3 pencilBtns">
+                      <IoMdClose className="fs-5 text-black  " />
+                    </Button>
+                  </div>
+                </div>
+                <Button className="rounded-pill bg-white text-linkedin fw-bold fs-6 py-1 d-flex justify-content-center align-items-center me-2 mb-4 border-primary blueBtns ">
+                  Aggiungi competenze
+                </Button>
+              </div>
             </div>
           </Col>
           <Col xs={2}>

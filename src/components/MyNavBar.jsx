@@ -17,8 +17,10 @@ import { TbMessageCircleFilled } from "react-icons/tb";
 import { FaBell } from "react-icons/fa";
 
 import { BsFillGrid3X3GapFill } from "react-icons/bs";
+import { useSelector } from "react-redux";
 
 const MyNavBar = () => {
+  const idUser = useSelector((state) => state.profile.user._id);
   return (
     <>
       <div id="NavBar" className="bg-white position-sticky top-0">
@@ -80,14 +82,14 @@ const MyNavBar = () => {
                 <Link
                   id="link"
                   className=" d-flex flex-column justify-content-center align-items-center me-2 me-sm-5 text-secondary text-decoration-none"
-                  to={"/profile/:id"}
+                  to={`/profile/${idUser}`}
                 >
                   <p className="d-none d-md-block m-0  fs-7 text-secondary text-decoration-none">Tu</p>
                 </Link>
                 <Link
                   id="link"
                   className=" d-flex flex-column justify-content-center align-items-center me-2 me-sm-5 text-secondary text-decoration-none  border-start ps-4"
-                  to={"/profile/:id"}
+                  to={"/"}
                 >
                   <BsFillGrid3X3GapFill className="fs-3" />
                   <p className="d-none d-md-block m-0  fs-7 text-secondary text-decoration-none">Per le aziende</p>
