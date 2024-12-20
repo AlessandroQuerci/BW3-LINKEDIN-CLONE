@@ -225,6 +225,7 @@ const ProfilePage = () => {
                 </div>
               </div>
             </div>
+            ---------
             <div className="d-flex flex-column bg-white border border-1 rounded-3 px-3 py-4 mb-2">
               <h3 className="fs-5 ">Consigliato per te</h3>
               <p className="text-secondary mb-3 d-flex justify-content-start align-items-center">
@@ -431,7 +432,6 @@ const ProfilePage = () => {
                 </Button>
               </div>
             </div>
-
             <div className="d-flex flex-column bg-white border border-1 rounded-3  mb-2 dashed-border mb-5">
               <div className="px-3 pt-2">
                 <div className="d-flex justify-content-between align-items-top mb-3">
@@ -488,6 +488,41 @@ const ProfilePage = () => {
             </div>
             <div className="sticky-top">
               <img src={hiring} alt="" className="w-100 rounded sticky-top" />
+            </div>
+            <div className="d-flex flex-column bg-white border border-1 rounded-3  mb-2 dashed-border mt-2">
+              <div className="px-3 pt-2">
+                <div className="d-flex justify-content-between align-items-top mb-3">
+                  <div className="pt-2">
+                    <h3 className="fs-5 m-0 text-black">
+                      Esplora i profili Premium
+                    </h3>
+
+                    <div className="d-flex  justify-content-start align-items-center mb-3 ">
+                      <img
+                        className="rounded-pill w-100%"
+                        src={userNoPhoto}
+                        alt=""
+                      />
+
+                      <div className="d-flex flex-column">
+                        <p className="m-0 ms-2 fs-6 text-black ">
+                          Dario Annunziata
+                        </p>
+                        <p className="m-0 ms-2 fs-7 text-secondary ">
+                          Junior Developer -
+                        </p>
+                        <p className="m-0 ms-2 fs-8 text-secondary ">
+                          Forvis Mazars Group, Italy
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className=" d-flex justify-content-end align-items-center"></div>
+                </div>
+                <Button className="rounded-pill bg-white text-linkedin fw-bold fs-6 py-1 d-flex justify-content-center align-items-center me-2 mb-4 border-primary blueBtns ">
+                  Messaggio
+                </Button>
+              </div>
             </div>
           </Col>
         </Row>
