@@ -1,12 +1,11 @@
 import { Button, Col, Container, Row } from "react-bootstrap";
 import userEmpty from "../assets/image/empty-user.png";
 import { useParams } from "react-router-dom";
-import React, { useEffect } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { useDispatch, useSelector } from "react-redux";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Form from "react-bootstrap/Form";
 import { useRef } from "react";
 import MyFooter from "./MyFooter";
