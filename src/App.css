@@ -221,6 +221,9 @@ div > hr + p {
   width: 48px;
   height: 48px;
 }
+#user-info > Link {
+  text-decoration: line-through;
+}
 #user-info div p::after {
   content: " • ";
 }
@@ -228,9 +231,10 @@ div > hr + p {
   top: 0px;
   right: 10px;
 }
-#bg-img {
+/*#bg-img {
   background-color: #d9e2ed;
 }
+*/
 #heart-btn,
 #congrats-btn {
   margin-left: -10px;
