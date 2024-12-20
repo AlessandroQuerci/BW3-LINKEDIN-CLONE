@@ -3,8 +3,38 @@ import { Button, Col, Container, Dropdown, Row } from "react-bootstrap";
 //ICONE
 import ProfileModal from "./ProfileModal";
 import PostList from "./PostList";
+import { useEffect, useState } from "react";
 
 const Home = () => {
+  const [posts, setPosts] = useState([]);
+
+  // Funzione per recuperare i post esistenti
+  const fetchPosts = async () => {
+    try {
+      const response = await fetch("https://striveschool-api.herokuapp.com/api/posts/", {
+        headers: {
+          Authorization:
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzYyZTQ0NTUzMDRhNzAwMTUxNDhjNzUiLCJpYXQiOjE3MzQ1MzQyMTMsImV4cCI6MTczNTc0MzgxM30.Zo-V4M5-basIstgHFjKnRpXgfiqLigX90ro6SpVyFzI",
+        },
+      });
+      if (!response.ok) throw new Error("Errore nel recupero dei post");
+      const data = await response.json();
+      setPosts(data.reverse()); // Ordina i post in ordine decrescente
+    } catch (error) {
+      console.error("Errore nel recupero dei post:", error);
+    }
+  };
+
+  // Funzione per aggiungere un nuovo post alla lista
+  const addNewPost = (newPost) => {
+    setPosts([newPost, ...posts]); // Aggiunge il nuovo post all'inizio della lista
+  };
+
+  // Recupera i post al caricamento iniziale
+  useEffect(() => {
+    fetchPosts();
+  }, []);
+
   return (
     <>
       <Container fluid className="mt-4 mb-5">
@@ -84,7 +114,7 @@ const Home = () => {
                     className=" rounded-circle"
                   />
                 </div>
-                <ProfileModal />
+                <ProfileModal onPostCreated={addNewPost} />
               </div>
               <div className="d-flex justify-content-around mt-3">
                 <Button size="sm d-flex justify-content-between align-items-center gap-2 border-0 bg-white text-secondary fw-bold">

@@ -10,6 +10,7 @@ const PostList = () => {
 
   const fetchPostsAndUsers = async () => {
     try {
+      setLoading(true);
       const postsResponse = await fetch("https://striveschool-api.herokuapp.com/api/posts/", {
         method: "GET",
         headers: {
@@ -60,6 +61,7 @@ const PostList = () => {
 
   return (
     <div className="w-100 ">
+      {loading && <p>Caricamento in corso...</p>}
       {posts.length > 0 ? (
         posts.map((post) => (
           <div key={post._id} className="mb-3 position-relative">
