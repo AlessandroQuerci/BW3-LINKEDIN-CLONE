@@ -14,12 +14,12 @@ function ProfileModal() {
         Crea un post
       </Button>
 
-      <Modal className="" show={show} onHide={handleClose} animation={false}>
+      <Modal className="" show={show} onHide={handleClose} animation={true} size="lg" id="modaleHome">
         <Modal.Header closeButton>
           <Modal.Title>Modal heading</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <textarea id="comment" name="comment" rows="10" cols="50" placeholder="Di cosa vorresti parlare?" className="fs-4 border-0" required></textarea>
+          <textarea id="comment" name="comment" rows="10" cols="50" placeholder="Di cosa vorresti parlare?" className="fs-4 border-0 w-100" required></textarea>
           <br />
           <div className="d-flex justify-content-end">
             <input type="submit" value="Pubblica" className="btn btn-primary rounded-pill mt-5" />

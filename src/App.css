@@ -69,6 +69,14 @@ body {
   position: absolute;
   bottom: -35px;
   left: 10px;
+
+  object-fit: cover;
+}
+
+#userImage {
+  width: 124px !important;
+  height: 124px !important;
+  object-fit: cover;
 }
 
 #userNoPhoto {
@@ -205,22 +213,7 @@ body {
 
 /*PARTE CENTRALE*/
 /*Modale*/
-.modal dialog {
-  height: 80%;
-  width: 100%;
-  max-width: none;
-}
-.modal-content {
-  z-index: 20;
-  height: 100%;
-  width: 100%;
-}
 
-@media (min-width: 576px) {
-  .modal-dialog {
-    max-width: fit-content;
-  }
-}
 /*card crea-post*/
 #user-box {
   border: 1px solid;
@@ -580,22 +573,7 @@ body {
 
 /*PARTE CENTRALE*/
 /*Modale*/
-.modal dialog {
-  height: 80%;
-  width: 100%;
-  max-width: none;
-}
-.modal-content {
-  z-index: 20;
-  height: 100%;
-  width: 100%;
-}
 
-@media (min-width: 576px) {
-  .modal-dialog {
-    max-width: fit-content;
-  }
-}
 /*card crea-post*/
 #user-box {
   border: 1px solid;
