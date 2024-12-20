@@ -5,46 +5,76 @@ import { Link } from "react-router-dom";
 
 const PostList = () => {
   const [posts, setPosts] = useState([]);
+  const [postsToShow, setPostsToShow] = useState(10);
+  const [loading, setLoading] = useState(false);
+
+  const fetchPostsAndUsers = async () => {
+    try {
+      const postsResponse = await fetch("https://striveschool-api.herokuapp.com/api/posts/", {
+        method: "GET",
+        headers: {
+          Authorization:
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzYyZTQ0NTUzMDRhNzAwMTUxNDhjNzUiLCJpYXQiOjE3MzQ1MzQyMTMsImV4cCI6MTczNTc0MzgxM30.Zo-V4M5-basIstgHFjKnRpXgfiqLigX90ro6SpVyFzI", // Inserisci qui il tuo token
+          "Content-Type": "application/json",
+        },
+      });
+      if (!postsResponse.ok) throw new Error("Errore nella risposta dell'API");
+      const data = await postsResponse.json();
+
+      const NumOfPost = data.slice(0, postsToShow);
+      const enrichedPosts = await Promise.all(
+        NumOfPost.map(async (post) => {
+          try {
+            const userResponse = await fetch(`https://striveschool-api.herokuapp.com/api/profile/${post.user._id}`, {
+              headers: {
+                Authorization:
+                  "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzYyZTQ0NTUzMDRhNzAwMTUxNDhjNzUiLCJpYXQiOjE3MzQ1MzQyMTMsImV4cCI6MTczNTc0MzgxM30.Zo-V4M5-basIstgHFjKnRpXgfiqLigX90ro6SpVyFzI",
+              },
+            });
+
+            if (!userResponse.ok) throw new Error("Errore nel recupero dei dettagli utente");
+            const userData = await userResponse.json();
+            return { ...post, userDetails: userData };
+          } catch (error) {
+            console.error(`Errore nel recupero dell'utente per il post ${post._id}:`, error);
+            return post;
+          }
+        })
+      );
+
+      setPosts(enrichedPosts);
+    } catch (error) {
+      console.error("Errore nel recupero dei dati:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    const fetchPosts = async () => {
-      try {
-        const response = await fetch("https://striveschool-api.herokuapp.com/api/posts/", {
-          method: "GET",
-          headers: {
-            Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzYyZTQ0NTUzMDRhNzAwMTUxNDhjNzUiLCJpYXQiOjE3MzQ1MzQyMTMsImV4cCI6MTczNTc0MzgxM30.Zo-V4M5-basIstgHFjKnRpXgfiqLigX90ro6SpVyFzI", // Inserisci qui il tuo token
-            "Content-Type": "application/json",
-          },
-        });
-        if (!response.ok) throw new Error("Errore nella risposta dell'API");
-        const data = await response.json();
+    fetchPostsAndUsers();
+  }, [postsToShow]);
 
-        const NumOfPost = data.slice(0, 25);
-        setPosts(NumOfPost);
-      } catch (error) {
-        console.error("Errore nel recupero dei dati:", error);
-      }
-    };
-
-    fetchPosts();
-  }, []);
+  const loadMorePosts = () => {
+    setPostsToShow((prev) => prev + 5);
+  };
 
   return (
     <div className="w-100 ">
       {posts.length > 0 ? (
         posts.map((post) => (
           <div key={post._id} className="mb-3 position-relative">
-            <div className="d-flex">
+            <div className="d-flex gap-1">
               <div id="img-btn">
-                <img
-                  src="https://plus.unsplash.com/premium_photo-1680281937048-735543c5c0f7?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8Y29tcGFueXxlbnwwfDF8MHx8fDA%3D"
-                  alt=""
-                  className="img-fluid rounded-circle"
-                />
+                <Link to={`/profile/${post.user._id}`}>
+                  <img
+                    src={post.user && post.user.image ? post.user.image : "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png"}
+                    alt=""
+                    className="img-fluid rounded-circle"
+                  />
+                </Link>
               </div>
               <div id="user-info" className="d-flex flex-column">
-                <Link to={`/profile/${post.user && post.user.id ? post.user.id : post.username}`} className="m-0 fs-6 fw-bold d-block text-black">
+                <Link to={`/profile/${post.user._id}`} className="m-0 fs-6 fw-bold d-block text-black">
                   {post.user && post.user.name && post.user.surname ? post.user.name + " " + post.user.surname : post.username}
                 </Link>
                 <p className="m-0 fs-7">10.000 follower</p>
@@ -230,6 +260,14 @@ const PostList = () => {
         ))
       ) : (
         <p>Caricamento...</p>
+      )}
+
+      {!loading && posts.length > 0 && (
+        <div className="text-center my-3">
+          <Button onClick={loadMorePosts} className="bg-white text-secondary border-0">
+            Vedi Altro
+          </Button>
+        </div>
       )}
     </div>
   );
