@@ -1,4 +1,4 @@
-import { SET_AREA, SET_BIO, SET_EMAIL, SET_ID, SET_IMAGE, SET_NAME, SET_SURNAME, SET_TITLE, SET_USERNAME } from "../actions/index";
+import { UPDATE_AREA, UPDATE_BIO, UPDATE_EMAIL, UPDATE_ID, UPDATE_IMAGE, UPDATE_NAME, UPDATE_SURNAME, UPDATE_TITLE, UPDATE_USERNAME } from "../actions/index";
 
 const InitialState = {
   user: {
@@ -17,78 +17,78 @@ const InitialState = {
   },
 };
 
-const ProfileReducer = (state = InitialState, action) => {
+const UpdateProfileReducer = (state = InitialState, action) => {
   switch (action.type) {
-    case SET_NAME:
+    case UPDATE_NAME:
       return {
         ...state,
         user: {
           ...state.user,
-          name: action.newName,
+          name: action.newValue,
         },
       };
-    case SET_USERNAME:
+    case UPDATE_USERNAME:
       return {
         ...state,
         user: {
           ...state.user,
-          username: action.newUsername,
+          username: action.newValue,
         },
       };
-    case SET_SURNAME:
+    case UPDATE_SURNAME:
       return {
         ...state,
         user: {
           ...state.user,
-          surname: action.newSurname,
+          surname: action.newValue,
         },
       };
-    case SET_TITLE:
+    case UPDATE_TITLE:
       return {
         ...state,
         user: {
           ...state.user,
-          title: action.newTitle,
+          title: action.newValue,
         },
       };
-    case SET_BIO:
+    case UPDATE_BIO:
       return {
         ...state,
         user: {
           ...state.user,
-          bio: action.newBio,
+          bio: action.newValue,
         },
       };
-    case SET_EMAIL:
+    case UPDATE_EMAIL:
       return {
         ...state,
         user: {
           ...state.user,
-          email: action.newEmail,
+          email: action.newValue,
         },
       };
-    case SET_AREA:
+    case UPDATE_AREA:
       return {
         ...state,
         user: {
           ...state.user,
-          area: action.newArea,
+          area: action.newValue,
         },
       };
-    case SET_ID:
+    case UPDATE_ID:
       return {
         ...state,
         user: {
           ...state.user,
-          _id: action.newId,
+          _id: action.newValue,
         },
       };
-    case SET_IMAGE:
+    case UPDATE_IMAGE:
       return {
         ...state,
         user: {
           ...state.user,
-          image: action.newImage,
+          image: action.newValue,
         },
       };
 
@@ -97,4 +97,4 @@ const ProfileReducer = (state = InitialState, action) => {
   }
 };
 
-export default ProfileReducer;
+export default UpdateProfileReducer;

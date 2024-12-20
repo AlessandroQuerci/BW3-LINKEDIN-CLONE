@@ -1,6 +1,6 @@
 import { Button, Col, Container, Row } from "react-bootstrap";
 import userEmpty from "../assets/image/empty-user.png";
-
+import { useParams } from "react-router-dom";
 import React, { useEffect } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -8,6 +8,7 @@ import "slick-carousel/slick/slick-theme.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import Form from "react-bootstrap/Form";
+import { useRef } from "react";
 
 import Modal from "react-bootstrap/Modal";
 //MEDIA
@@ -50,6 +51,24 @@ import { FaLongArrowAltRight } from "react-icons/fa";
 import { ImPencil } from "react-icons/im";
 
 const ProfilePage = () => {
+  //PARAMETRI
+  let params = useParams();
+
+  //UPLOAD PHOTO
+
+  const fileUpload = useRef(null);
+  const uploadProfilePic = (e) => {
+    const file = e.target.files[0];
+    if (!file) {
+      console.log("No file selected");
+      return;
+    }
+    updatedProfile.image = file;
+  };
+  const handleUpload = () => {
+    console.log(fileUpload.current.click(), "fileUpload");
+  };
+
   //REDUX
   const dispatch = useDispatch();
   const userName = useSelector((state) => state.profile.user.name);
@@ -60,6 +79,25 @@ const ProfilePage = () => {
   const userArea = useSelector((state) => state.profile.user.area);
   const userTitle = useSelector((state) => state.profile.user.title);
   const userBio = useSelector((state) => state.profile.user.bio);
+  const updateName = useSelector((state) => state.updateProfile.user.name);
+  const updateSurname = useSelector((state) => state.updateProfile.user.surname);
+  const updateUsername = useSelector((state) => state.updateProfile.user.username);
+  const updateImage = useSelector((state) => state.updateProfile.user.image);
+  const updateId = useSelector((state) => state.updateProfile.user._id);
+  const updateArea = useSelector((state) => state.updateProfile.user.area);
+  const updateTitle = useSelector((state) => state.updateProfile.user.title);
+  const updateBio = useSelector((state) => state.updateProfile.user.bio);
+
+  const updatedProfile = {
+    name: updateName,
+    surname: updateSurname,
+    email: "",
+    username: updateUsername,
+    bio: updateBio,
+    title: updateTitle,
+    area: updateArea,
+    image: null,
+  };
 
   //MODALS
 
@@ -81,9 +119,14 @@ const ProfilePage = () => {
   const closeProfileModal = () => setProfileModal(false);
   const showProfileModal = () => setProfileModal(true);
 
+  //FORM
+  const handleChange = (actionType, value) => {
+    dispatch({ type: actionType, newValue: value });
+  };
+
   //FETCH
   const fetchMe = () => {
-    const URL = "https://striveschool-api.herokuapp.com/api/profile/me";
+    const URL = `https://striveschool-api.herokuapp.com/api/profile/${params.id}`;
     fetch(URL, {
       headers: {
         Authorization:
@@ -135,6 +178,29 @@ const ProfilePage = () => {
           type: SET_ID,
           newId: profileData._id,
         });
+      });
+  };
+
+  const fetchUpdate = () => {
+    const URL = `https://striveschool-api.herokuapp.com/api/profile/`;
+    fetch(URL, {
+      method: "PUT",
+      body: JSON.stringify(updatedProfile),
+      headers: {
+        "Content-Type": "application/json",
+        Authorization:
+          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzYyYWYzMjUzMDRhNzAwMTUxNDhiZTAiLCJpYXQiOjE3MzQ1MjA2MjcsImV4cCI6MTczNTczMDIyN30.mhSupLJTXzuAHLaVzdr8ERg_CfF7bu8V2VsSxBuTB-s",
+      },
+    })
+      .then((resp) => {
+        if (resp.ok) {
+          return resp.json();
+        } else {
+          throw new Error("Errore nella richiesta!");
+        }
+      })
+      .then((profileUpdate) => {
+        console.log("Profilo aggiornato con successo!");
       });
   };
 
@@ -234,12 +300,17 @@ const ProfilePage = () => {
                     </p>
                   </Modal.Body>
                   <Modal.Footer>
-                    <Button className="rounded-pill bg-white text-linkedin fw-bold fs-6 py-1 px-3 d-flex justify-content-center align-items-center me-2 blueBtns ">
-                      Usa Fotocamera
-                    </Button>
-                    <Button className="rounded-pill bg-blu-linkedin text-white fw-bold fs-6 py-1 px-3 d-flex justify-content-center align-items-center me-2 deepBtns">
-                      Carica Foto
-                    </Button>
+                    <div className="App">
+                      <input type="file" ref={fileUpload} onChange={uploadProfilePic} style={{ opacity: "0", display: "none" }} />
+                      <Button
+                        onClick={() => {
+                          handleUpload();
+                        }}
+                        className="rounded-pill bg-blu-linkedin text-white fw-bold fs-6 py-1 px-3 d-flex justify-content-center align-items-center me-2 deepBtns"
+                      >
+                        Carica Foto
+                      </Button>
+                    </div>
                   </Modal.Footer>
                 </Modal>
               </div>
@@ -267,42 +338,66 @@ const ProfilePage = () => {
                       <Form
                         onSubmit={(e) => {
                           e.preventDefault();
+                          fetchUpdate();
+                          fetchMe();
                         }}
                       >
                         <Form.Group className="mb-3">
                           <Form.Label className="fs-7 text-secondary m-o">Nome*</Form.Label>
-                          <Form.Control  placeholder="Scrivi il tuo nome qui..." required className="border-1 border-black fs-7 profileControls" />
+                          <Form.Control
+                            placeholder="Scrivi il tuo nome qui..."
+                            className="border-1 border-black fs-7 profileControls"
+                            onChange={(e) => handleChange(UPDATE_NAME, e.target.value)}
+                          />
                         </Form.Group>
                         <Form.Group className="mb-3">
                           <Form.Label className="fs-7 text-secondary m-o">Cognome*</Form.Label>
-                          <Form.Control placeholder="Scrivi il tuo cognome qui..." required className="border-1 border-black fs-7 profileControls" />
+                          <Form.Control
+                            placeholder="Scrivi il tuo cognome qui..."
+                            className="border-1 border-black fs-7 profileControls"
+                            onChange={(e) => handleChange(UPDATE_SURNAME, e.target.value)}
+                          />
                         </Form.Group>
                         <Form.Group className="mb-3">
                           <Form.Label className="fs-7 text-secondary m-o">Username*</Form.Label>
-                          <Form.Control placeholder="Scrivi il tuo username qui..." required className="border-1 border-black fs-7 profileControls" />
+                          <Form.Control
+                            placeholder="Scrivi il tuo username qui..."
+                            className="border-1 border-black fs-7 profileControls"
+                            onChange={(e) => handleChange(UPDATE_USERNAME, e.target.value)}
+                          />
                         </Form.Group>
                         <Form.Group className="mb-3">
                           <Form.Label className="fs-7 text-secondary m-o">Sommario*</Form.Label>
-                          <Form.Control placeholder="Scrivi il tuo sommario qui..." required className="border-1 border-black fs-7 profileControls" />
+                          <Form.Control
+                            placeholder="Scrivi il tuo sommario qui..."
+                            className="border-1 border-black fs-7 profileControls"
+                            onChange={(e) => handleChange(UPDATE_BIO, e.target.value)}
+                          />
                         </Form.Group>
                         <Form.Group className="mb-3">
                           <Form.Label className="fs-7 text-secondary m-o">Settore*</Form.Label>
-                          <Form.Control placeholder="Scrivi il tuo settore qui..." required className="border-1 border-black fs-7 profileControls" />
+                          <Form.Control
+                            placeholder="Scrivi il tuo settore qui..."
+                            className="border-1 border-black fs-7 profileControls"
+                            onChange={(e) => handleChange(UPDATE_TITLE, e.target.value)}
+                          />
                         </Form.Group>
                         <Form.Group className="mb-3">
                           <Form.Label className="fs-7 text-secondary m-o">Città*</Form.Label>
-                          <Form.Control placeholder="Scrivi la tua città qui..." required className="border-1 border-black fs-7 profileControls" />
+                          <Form.Control
+                            placeholder="Scrivi la tua città qui..."
+                            className="border-1 border-black fs-7 profileControls"
+                            onChange={(e) => handleChange(UPDATE_AREA, e.target.value)}
+                          />
                         </Form.Group>
+                        <Button
+                          type="submit"
+                          className="rounded-pill bg-blu-linkedin text-white fw-bold fs-6 py-1 px-3 d-flex justify-content-center align-items-center me-2 deepBtns"
+                        >
+                          Salva
+                        </Button>
                       </Form>
                     </Modal.Body>
-                    <Modal.Footer>
-                      <Button
-                        type="submit"
-                        className="rounded-pill bg-blu-linkedin text-white fw-bold fs-6 py-1 px-3 d-flex justify-content-center align-items-center me-2 deepBtns"
-                      >
-                        Salva
-                      </Button>
-                    </Modal.Footer>
                   </Modal>
                 </div>
                 <p className="mb-3 fw-bold fs-6">{userTitle}</p>
@@ -468,8 +563,8 @@ const ProfilePage = () => {
               </div>
               <p className="text-secondary fw-light mb-3 ">www.linkedin.com/in/alessandro-querci-887a28239</p>
             </div>
-            <div className="sticky-top">
-              <img src={hiring} alt="" className="w-100 rounded sticky-top" />
+            <div className="sticky-top top-50">
+              <img src={hiring} alt="" className="w-100 rounded sticky-top " />
             </div>
           </Col>
         </Row>

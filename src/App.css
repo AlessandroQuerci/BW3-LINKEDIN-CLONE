@@ -122,3 +122,11 @@ html {
   box-shadow: 0 0 32px 4px rgba(255, 255, 255, 0.7);
   transition: box-shadow 0.3s ease;
 }
+
+#NavBar {
+  z-index: 1000;
+}
+
+.top-50 {
+  top: 86px !important;
+}
