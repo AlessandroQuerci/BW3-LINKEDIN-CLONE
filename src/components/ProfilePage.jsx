@@ -1,16 +1,24 @@
 import { Button, Col, Container, Row } from "react-bootstrap";
 import userEmpty from "../assets/image/empty-user.png";
-import userNoPhoto from "../assets/image/no-photo.png";
+import { useParams } from "react-router-dom";
 import React, { useEffect } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
+import Form from "react-bootstrap/Form";
+import { useRef } from "react";
+import MyFooter from "./MyFooter";
+
+import Modal from "react-bootstrap/Modal";
 //MEDIA
 import littleHouse from "../assets/image/little-house.png";
 import littleCamera from "../assets/image/little-camera.png";
 import littleWindow from "../assets/image/window.png";
 import hiring from "../assets/image/hiring.png";
+import users from "../assets/image/users.png";
+import fotoChange from "../assets/image/foto-change.png";
 
 //ACTIONS
 import {
@@ -44,6 +52,25 @@ import { FaLongArrowAltRight } from "react-icons/fa";
 import { ImPencil } from "react-icons/im";
 
 const ProfilePage = () => {
+  //PARAMETRI
+  let params = useParams();
+
+  //UPLOAD PHOTO
+
+  const fileUpload = useRef(null);
+  const uploadProfilePic = (e) => {
+    const file = e.target.files[0];
+    if (!file) {
+      console.log("No file selected");
+      return;
+    }
+    updatedProfile.image = file;
+  };
+  const handleUpload = () => {
+    console.log(fileUpload.current.click(), "fileUpload");
+  };
+
+  //REDUX
   const dispatch = useDispatch();
   const userName = useSelector((state) => state.profile.user.name);
   const userSurname = useSelector((state) => state.profile.user.surname);
@@ -53,9 +80,54 @@ const ProfilePage = () => {
   const userArea = useSelector((state) => state.profile.user.area);
   const userTitle = useSelector((state) => state.profile.user.title);
   const userBio = useSelector((state) => state.profile.user.bio);
+  const updateName = useSelector((state) => state.updateProfile.user.name);
+  const updateSurname = useSelector((state) => state.updateProfile.user.surname);
+  const updateUsername = useSelector((state) => state.updateProfile.user.username);
+  const updateImage = useSelector((state) => state.updateProfile.user.image);
+  const updateId = useSelector((state) => state.updateProfile.user._id);
+  const updateArea = useSelector((state) => state.updateProfile.user.area);
+  const updateTitle = useSelector((state) => state.updateProfile.user.title);
+  const updateBio = useSelector((state) => state.updateProfile.user.bio);
 
+  const updatedProfile = {
+    name: updateName,
+    surname: updateSurname,
+    email: "",
+    username: updateUsername,
+    bio: updateBio,
+    title: updateTitle,
+    area: updateArea,
+    image: null,
+  };
+
+  //MODALS
+
+  //PHOTO MODAL
+  const [photoModal, setPhotoModal] = useState(false);
+
+  const closePhotoModal = () => setPhotoModal(false);
+  const showPhotoModal = () => setPhotoModal(true);
+
+  //BACKGROUND-PHOTO MODAL
+  const [backgroundModal, setBackgroundModal] = useState(false);
+
+  const closeBackgroundModal = () => setBackgroundModal(false);
+  const showBackgroundModal = () => setBackgroundModal(true);
+
+  //PROFILE MODAL
+  const [profileModal, setProfileModal] = useState(false);
+
+  const closeProfileModal = () => setProfileModal(false);
+  const showProfileModal = () => setProfileModal(true);
+
+  //FORM
+  const handleChange = (actionType, value) => {
+    dispatch({ type: actionType, newValue: value });
+  };
+
+  //FETCH
   const fetchMe = () => {
-    const URL = "https://striveschool-api.herokuapp.com/api/profile/me";
+    const URL = `https://striveschool-api.herokuapp.com/api/profile/${params.id}`;
     fetch(URL, {
       headers: {
         Authorization:
@@ -110,10 +182,34 @@ const ProfilePage = () => {
       });
   };
 
+  const fetchUpdate = () => {
+    const URL = `https://striveschool-api.herokuapp.com/api/profile/`;
+    fetch(URL, {
+      method: "PUT",
+      body: JSON.stringify(updatedProfile),
+      headers: {
+        "Content-Type": "application/json",
+        Authorization:
+          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzYyYWYzMjUzMDRhNzAwMTUxNDhiZTAiLCJpYXQiOjE3MzQ1MjA2MjcsImV4cCI6MTczNTczMDIyN30.mhSupLJTXzuAHLaVzdr8ERg_CfF7bu8V2VsSxBuTB-s",
+      },
+    })
+      .then((resp) => {
+        if (resp.ok) {
+          return resp.json();
+        } else {
+          throw new Error("Errore nella richiesta!");
+        }
+      })
+      .then((profileUpdate) => {
+        console.log("Profilo aggiornato con successo!");
+      });
+  };
+
   useEffect(() => {
     fetchMe();
   }, []);
 
+  //SLICK SETTINGS
   const settings = {
     dots: false,
     infinite: false,
@@ -158,14 +254,66 @@ const ProfilePage = () => {
             <div className="d-flex flex-column bg-white border border-1 rounded-3 mb-2">
               <div id="userField">
                 <img src={userEmpty} alt="" className="img-fluid object-fit-cover rounded-top-3 w-100" />
-                <Button className="p-2 bg-white border-0 z-1 rounded-circle d-flex justify-content-center" id="btn-camera">
-                  <FaCamera className="text-success" />
+                <Button className="p-2 bg-white border-0 z-1 rounded-circle d-flex justify-content-center" id="btn-camera" onClick={showBackgroundModal}>
+                  <FaCamera className="text-primary" />
                 </Button>
+                <Modal show={backgroundModal} onHide={closeBackgroundModal} size="lg">
+                  <Modal.Header closeButton>
+                    <Modal.Title className="fs-5">Aggiungi Foto</Modal.Title>
+                  </Modal.Header>
+                  <Modal.Body className="py-5 px-5 d-flex justify-content-center align-items-center text-center flex-column">
+                    <img src={fotoChange} alt="" className="pb-4" />
+                    <p className="fs-5  px-5">
+                      Mostra la tua personalità, i tuoi interessi, <br />
+                      istantanee del tuo team o traguardi degni di nota
+                    </p>
+                    <p className="fs-7 text-secondary px-5">
+                      Una bella foto di sfondo ti aiuterà a risaltare.{" "}
+                      <a href="" className="text-decoration-none text-primary">
+                        Per saperne di più
+                      </a>
+                    </p>
+                  </Modal.Body>
+                  <Modal.Footer>
+                    <Button className="rounded-pill bg-blu-linkedin text-white fw-bold fs-6 py-1 px-3 d-flex justify-content-center align-items-center me-2 deepBtns">
+                      Modifica lo sfondo del profilo
+                    </Button>
+                  </Modal.Footer>
+                </Modal>
               </div>
               <div className="mb-4" id="userNoPhoto">
-                <Button className="rounded-circle bg-transparent border-0 " id="addPhoto">
+                <Button className="rounded-circle bg-transparent border-0 " id="addPhoto" onClick={showPhotoModal}>
                   <img src={userImage} alt="" className="img-fluid object-fit-cover rounded-circle " id="userImage" />
                 </Button>
+
+                <Modal show={photoModal} onHide={closePhotoModal} size="lg">
+                  <Modal.Header closeButton>
+                    <Modal.Title className="fs-5">Aggiungi Foto</Modal.Title>
+                  </Modal.Header>
+                  <Modal.Body className="py-5 px-5 d-flex justify-content-center align-items-center text-center flex-column">
+                    <p className="fs-4 pb-3">
+                      La tua foto non deve per forza essere <br /> un tuo primo piano! <br /> Ma qualcosa che ti rappresenti.
+                    </p>
+                    <img src={users} alt="" className="pb-4" />
+                    <p className="fs-7 text-secondary px-5">
+                      Chiediamo agli utenti di LinkedIn di utilizzare le loro vere identità, quindi scatta o carica una tua foto. Poi ritagliala, applica dei
+                      filtri e perfezionala come vuoi.
+                    </p>
+                  </Modal.Body>
+                  <Modal.Footer>
+                    <div className="App">
+                      <input type="file" ref={fileUpload} onChange={uploadProfilePic} style={{ opacity: "0", display: "none" }} />
+                      <Button
+                        onClick={() => {
+                          handleUpload();
+                        }}
+                        className="rounded-pill bg-blu-linkedin text-white fw-bold fs-6 py-1 px-3 d-flex justify-content-center align-items-center me-2 deepBtns"
+                      >
+                        Carica Foto
+                      </Button>
+                    </div>
+                  </Modal.Footer>
+                </Modal>
               </div>
               <div className=" d-flex justify-content-start flex-column mx-4">
                 <div className="d-flex justify-content-between align-items-center">
@@ -176,9 +324,82 @@ const ProfilePage = () => {
                       Aggiungi badge di verifica
                     </Button>
                   </div>
-                  <Button className="border-0 bg-transparent rounded-circle d-flex justify-content-center align-items-center p-3 pencilBtns">
+                  <Button
+                    className="border-0 bg-transparent rounded-circle d-flex justify-content-center align-items-center p-3 pencilBtns"
+                    onClick={showProfileModal}
+                  >
                     <ImPencil className="fs-5 text-black  " />
                   </Button>
+                  <Modal show={profileModal} onHide={closeProfileModal} size="lg">
+                    <Modal.Header closeButton>
+                      <Modal.Title className="fs-5">Modifica Presentazione</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body className="py-3 px-3 d-flex justify-content-start flex-column">
+                      <p className="py-3 text-secondary fs-7">* Indica che è obbligatorio</p>
+                      <Form
+                        onSubmit={(e) => {
+                          e.preventDefault();
+                          fetchUpdate();
+                          fetchMe();
+                        }}
+                      >
+                        <Form.Group className="mb-3">
+                          <Form.Label className="fs-7 text-secondary m-o">Nome*</Form.Label>
+                          <Form.Control
+                            placeholder="Scrivi il tuo nome qui..."
+                            className="border-1 border-black fs-7 profileControls"
+                            onChange={(e) => handleChange(UPDATE_NAME, e.target.value)}
+                          />
+                        </Form.Group>
+                        <Form.Group className="mb-3">
+                          <Form.Label className="fs-7 text-secondary m-o">Cognome*</Form.Label>
+                          <Form.Control
+                            placeholder="Scrivi il tuo cognome qui..."
+                            className="border-1 border-black fs-7 profileControls"
+                            onChange={(e) => handleChange(UPDATE_SURNAME, e.target.value)}
+                          />
+                        </Form.Group>
+                        <Form.Group className="mb-3">
+                          <Form.Label className="fs-7 text-secondary m-o">Username*</Form.Label>
+                          <Form.Control
+                            placeholder="Scrivi il tuo username qui..."
+                            className="border-1 border-black fs-7 profileControls"
+                            onChange={(e) => handleChange(UPDATE_USERNAME, e.target.value)}
+                          />
+                        </Form.Group>
+                        <Form.Group className="mb-3">
+                          <Form.Label className="fs-7 text-secondary m-o">Sommario*</Form.Label>
+                          <Form.Control
+                            placeholder="Scrivi il tuo sommario qui..."
+                            className="border-1 border-black fs-7 profileControls"
+                            onChange={(e) => handleChange(UPDATE_BIO, e.target.value)}
+                          />
+                        </Form.Group>
+                        <Form.Group className="mb-3">
+                          <Form.Label className="fs-7 text-secondary m-o">Settore*</Form.Label>
+                          <Form.Control
+                            placeholder="Scrivi il tuo settore qui..."
+                            className="border-1 border-black fs-7 profileControls"
+                            onChange={(e) => handleChange(UPDATE_TITLE, e.target.value)}
+                          />
+                        </Form.Group>
+                        <Form.Group className="mb-3">
+                          <Form.Label className="fs-7 text-secondary m-o">Città*</Form.Label>
+                          <Form.Control
+                            placeholder="Scrivi la tua città qui..."
+                            className="border-1 border-black fs-7 profileControls"
+                            onChange={(e) => handleChange(UPDATE_AREA, e.target.value)}
+                          />
+                        </Form.Group>
+                        <Button
+                          type="submit"
+                          className="rounded-pill bg-blu-linkedin text-white fw-bold fs-6 py-1 px-3 d-flex justify-content-center align-items-center me-2 deepBtns"
+                        >
+                          Salva
+                        </Button>
+                      </Form>
+                    </Modal.Body>
+                  </Modal>
                 </div>
                 <p className="mb-3 fw-bold fs-6">{userTitle}</p>
                 <p className="mb-3 text-truncate w-50">{userBio}</p>
@@ -195,7 +416,10 @@ const ProfilePage = () => {
                   <Button className="rounded-pill bg-white text-linkedin fw-bold fs-6 py-1 px-3 d-flex justify-content-center align-items-center me-2 blueBtns ">
                     Aggiungi sezione del profilo
                   </Button>
-                  <Button className="rounded-pill bg-white text-linkedin fw-bold fs-6 py-1 px-3 d-flex justify-content-center align-items-center me-2  blueBtns  ">
+                  <Button
+                    className="rounded-pill bg-white text-linkedin fw-bold fs-6 py-1 px-3 d-flex justify-content-center align-items-center me-2  blueBtns"
+                    onClick={showProfileModal}
+                  >
                     Migliora profilo
                   </Button>
                   <Button className="rounded-pill bg-white text-secondary fw-bold fs-6 py-1 px-3 d-flex justify-content-center align-items-center me-2 border-secondary blackBtns ">
@@ -220,7 +444,10 @@ const ProfilePage = () => {
                       <p className="text-secondary fs-7 mb-4  fw-bold ">
                         Gli utenti che aggiungono un settore ricevono fino a 2,5 volte più visualizzazioni del profilo.
                       </p>
-                      <Button className="rounded-pill bg-white text-secondary fw-bold fs-6 py-1 px-2 d-flex justify-content-center align-items-center me-2 border-secondary blackBtns ">
+                      <Button
+                        className="rounded-pill bg-white text-secondary fw-bold fs-6 py-1 px-2 d-flex justify-content-center align-items-center me-2 border-secondary blackBtns "
+                        onClick={showProfileModal}
+                      >
                         Aggiungi settore
                       </Button>
                     </div>
@@ -234,7 +461,10 @@ const ProfilePage = () => {
                       <p className="text-secondary fs-7 mb-4  fw-bold ">
                         Gli utenti con una foto del profilo ricevono fino a 2,3 volte più visualizzazioni del profilo.
                       </p>
-                      <Button className="rounded-pill bg-white text-secondary fw-bold fs-6 py-1 px-2 d-flex justify-content-center align-items-center me-2 border-secondary  blackBtns">
+                      <Button
+                        className="rounded-pill bg-white text-secondary fw-bold fs-6 py-1 px-2 d-flex justify-content-center align-items-center me-2 border-secondary  blackBtns"
+                        onClick={showPhotoModal}
+                      >
                         Aggiungi foto
                       </Button>
                     </div>
@@ -334,12 +564,13 @@ const ProfilePage = () => {
               </div>
               <p className="text-secondary fw-light mb-3 ">www.linkedin.com/in/alessandro-querci-887a28239</p>
             </div>
-            <div className="sticky-top">
-              <img src={hiring} alt="" className="w-100 rounded sticky-top" />
+            <div className="sticky-top top-50">
+              <img src={hiring} alt="" className="w-100 rounded sticky-top " />
             </div>
           </Col>
         </Row>
       </Container>
+      <MyFooter />
     </>
   );
 };
