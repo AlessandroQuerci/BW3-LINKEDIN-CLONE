@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import Form from "react-bootstrap/Form";
 import { useRef } from "react";
+import MyFooter from "./MyFooter";
 
 import Modal from "react-bootstrap/Modal";
 //MEDIA
@@ -569,6 +570,7 @@ const ProfilePage = () => {
           </Col>
         </Row>
       </Container>
+      <MyFooter />
     </>
   );
 };
